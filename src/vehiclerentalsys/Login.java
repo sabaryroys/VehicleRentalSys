@@ -6,6 +6,10 @@ package vehiclerentalsys;
 
 import java.awt.event.FocusListener;
 import java.awt.event.KeyEvent;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -13,6 +17,8 @@ import javax.swing.JOptionPane;
  * @author Sabari Roy  
  */
 public class Login extends javax.swing.JFrame {
+    String DbUName;
+        String DbUPass;
 
     /**
      * Creates new form Login
@@ -41,6 +47,7 @@ public class Login extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Vehicle Rental System");
 
         jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -197,16 +204,34 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_pwdActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       
+        ResultSet rs = null;
+       DbConSelect db = new DbConSelect();
+       String query;
+        query = "select * from vehicle_db.user_pass";
+        try {
+             rs = db.selectDb(query);
+             while(rs.next())
+        {
+            DbUName = rs.getString("uname");
+            DbUPass = rs.getString("password");
+                   
+
+        }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         String usrName = uname.getText().trim();
         String password = pwd.getText().trim();
+        
         
         if(usrName.equals("") || password.equals(""))
         {
             JOptionPane.showMessageDialog(this, "User Name or Password cannot be empty!", "Warning", JOptionPane.WARNING_MESSAGE);
         }
         
-      else if(usrName.equals("sabari") && password.equals("1234"))
+      else if(usrName.equals(DbUName.trim()) && password.equals(DbUPass.trim()))
         {
             RentalMainForm mf = new RentalMainForm();
             this.hide();
