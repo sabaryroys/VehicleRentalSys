@@ -216,7 +216,7 @@ public class Login extends javax.swing.JFrame {
             DbUName = rs.getString("uname");
             DbUPass = rs.getString("password");
                    
-
+  
         }
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
