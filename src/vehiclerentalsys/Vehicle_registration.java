@@ -50,6 +50,11 @@ public class Vehicle_registration extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Vehicle Registration");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosed(java.awt.event.WindowEvent evt) {
+                formWindowClosed(evt);
+            }
+        });
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Options"));
         jPanel1.setToolTipText("To add/edit/delete vehicles from the system");
@@ -198,6 +203,11 @@ public class Vehicle_registration extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
       resetFunction();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
+        RentalMainForm rntl = new RentalMainForm();
+        rntl.show();
+    }//GEN-LAST:event_formWindowClosed
 
     /**
      * @param args the command line arguments
