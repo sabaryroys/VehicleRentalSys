@@ -4,10 +4,12 @@
  */
 package vehiclerentalsys;
 
+import java.awt.Color;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -77,6 +79,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel2.setText("Registration No.");
 
+        jTextField2.setBorder(new LineBorder(Color.GRAY,1));
         jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField2FocusLost(evt);
@@ -89,6 +92,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jComboBox1.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jComboBox1.setMaximumRowCount(3);
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Scooter", "Motor Cycle w/Gear", "Car", " " }));
+        jComboBox1.setBorder(new LineBorder(Color.GRAY,1));
         jComboBox1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox1ActionPerformed(evt);
@@ -104,6 +108,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel6.setText("Remarks/Comments");
 
+        jTextPane1.setBorder(new LineBorder(Color.GRAY,1));
         jScrollPane1.setViewportView(jTextPane1);
 
         jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sabari Roy\\Documents\\NetBeansProjects\\VehicleRentalSystem\\icons\\reset.png")); // NOI18N
@@ -116,6 +121,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel7.setText("Vehicle Model");
 
+        jTextField3.setBorder(new LineBorder(Color.GRAY,1));
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField3FocusLost(evt);
@@ -257,10 +263,12 @@ public class Vehicle_registration extends javax.swing.JFrame {
 
     private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
            jTextField2.setText(jTextField2.getText().toUpperCase());
+           jTextField2.setBorder(new LineBorder(Color.GRAY,1));
     }//GEN-LAST:event_jTextField2FocusLost
 
     private void jTextField3FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusLost
         jTextField3.setText(jTextField3.getText().toUpperCase());
+        jTextField3.setBorder(new LineBorder(Color.GRAY,1));
     }//GEN-LAST:event_jTextField3FocusLost
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -281,10 +289,13 @@ public class Vehicle_registration extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(this, "Registration Number cannot be Empty","Warning", JOptionPane.WARNING_MESSAGE);
             jTextField2.grabFocus();
+            jTextField2.setBorder(new LineBorder(Color.red,1));
         }
              else if(flag2)
                      {
             JOptionPane.showMessageDialog(this, "Vehicle model cannot be Empty","Warning", JOptionPane.WARNING_MESSAGE);
+             jTextField3.grabFocus();
+            jTextField3.setBorder(new LineBorder(Color.red,1));
        
                      }
     }//GEN-LAST:event_jButton2ActionPerformed
