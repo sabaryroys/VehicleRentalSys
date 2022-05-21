@@ -5,6 +5,7 @@
 package vehiclerentalsys;
 
 import java.awt.Color;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -53,6 +54,8 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jComboBox2 = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Vehicle Registration");
@@ -135,6 +138,19 @@ public class Vehicle_registration extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jLabel8.setText("Available");
+
+        jComboBox2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
+        jComboBox2.setMaximumRowCount(3);
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Yes", "No" }));
+        jComboBox2.setBorder(new LineBorder(Color.GRAY,1));
+        jComboBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -182,7 +198,11 @@ public class Vehicle_registration extends javax.swing.JFrame {
                                         .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
                                         .addComponent(jTextField2)
                                         .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.TRAILING, 0, 0, Short.MAX_VALUE)
-                                        .addComponent(jScrollPane1)))))
+                                        .addComponent(jScrollPane1))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(30, 30, 30)
+                                .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(20, 20, 20))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -204,7 +224,11 @@ public class Vehicle_registration extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel4)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -219,8 +243,8 @@ public class Vehicle_registration extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(87, Short.MAX_VALUE))
+                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -230,7 +254,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(317, Short.MAX_VALUE))
+                .addContainerGap(473, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -274,12 +298,12 @@ public class Vehicle_registration extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
            Boolean flag1 = false;
         Boolean flag2 = false;
-        String checkEmpty = jTextField2.getText();
-        String checkEmpty2 = jTextField3.getText();
-        if(checkEmpty == null || checkEmpty.equals(""))
-        {  
-           flag1 = true;
-        }
+            String checkEmpty = jTextField2.getText();
+                 String checkEmpty2 = jTextField3.getText();
+          if(checkEmpty == null || checkEmpty.equals(""))
+             {  
+                  flag1 = true;
+               }
         if(checkEmpty2 == null || checkEmpty2.equals(""))
              {
                      flag2 = true;
@@ -289,16 +313,36 @@ public class Vehicle_registration extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(this, "Registration Number cannot be Empty","Warning", JOptionPane.WARNING_MESSAGE);
             jTextField2.grabFocus();
-            jTextField2.setBorder(new LineBorder(Color.red,1));
+                    jTextField2.setBorder(new LineBorder(Color.red,1));
         }
              else if(flag2)
                      {
             JOptionPane.showMessageDialog(this, "Vehicle model cannot be Empty","Warning", JOptionPane.WARNING_MESSAGE);
              jTextField3.grabFocus();
-            jTextField3.setBorder(new LineBorder(Color.red,1));
+                      jTextField3.setBorder(new LineBorder(Color.red,1));
        
                      }
+        else
+             {
+              SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+               String vehicle_number =  jTextField2.getText().toUpperCase().trim();
+                String vehicle_type = jComboBox1.getSelectedItem().toString();
+                     String vehicle_model = jTextField3.getText().toUpperCase().trim();
+                      String availabilty = jComboBox2.getSelectedItem().toString().substring(0,1);
+                               String ins_st_dt = df.format(jDateChooser1.getDate());
+                               String ins_end_dt = df.format(jDateChooser2.getDate());
+                                String remarks = jTextPane1.getText();
+                               // System.out.println(vehicle_number+"\n"+vehicle_type+"\n"+vehicle_model+"\n"+availabilty+"\n"+ins_st_dt+"\n"+ins_end_dt+"\n"+remarks);
+                               
+                        
+                   JOptionPane.showMessageDialog(this, "Vehicle "+jTextField2.getText()+" added successfully");
+                        resetFunction();
+             }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -345,6 +389,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jTextField2.setText("");
         jTextField3.setText("");
         jComboBox1.setSelectedIndex(0);
+        jComboBox2.setSelectedIndex(0);
         jDateChooser1.setDate(dt);
         jDateChooser2.setDate(dt2);
         jTextPane1.setText("");
@@ -354,6 +399,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
@@ -363,6 +409,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTextField1;
