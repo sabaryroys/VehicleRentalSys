@@ -304,7 +304,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
              {  
                   flag1 = true;
                }
-        if(checkEmpty2 == null || checkEmpty2.equals(""))
+        if(checkEmpty2 == null || checkEmpty2.isEmpty())
              {
                      flag2 = true;
                  }
