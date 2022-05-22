@@ -4,7 +4,7 @@
  */
 package vehiclerentalsys;
 
-import java.awt.event.FocusListener;
+
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,11 +19,13 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     String DbUName;
         String DbUPass;
+    
 
     /**
      * Creates new form Login
      */
     public Login() {
+        
         initComponents();
     }
 
@@ -215,6 +217,34 @@ public class Login extends javax.swing.JFrame {
         {
             DbUName = rs.getString("uname");
             DbUPass = rs.getString("password");
+            String usrName = uname.getText().trim();
+        String password = pwd.getText().trim();
+        
+        
+        if(usrName.equals("") || password.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "User Name or Password cannot be empty!", "Warning", JOptionPane.WARNING_MESSAGE);
+           break;
+        }
+        
+      else if(usrName.equals(DbUName.trim()) && password.equals(DbUPass.trim()))
+        {
+            
+            
+            RentalMainForm rm = new RentalMainForm();
+    
+            rm.setVisible(true);
+            this.hide();
+            
+            
+            break;
+        
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(this,"incorrect Username or Password!", "Error",JOptionPane.ERROR_MESSAGE);
+            break;
+        }
                    
   
         }
@@ -222,26 +252,7 @@ public class Login extends javax.swing.JFrame {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        String usrName = uname.getText().trim();
-        String password = pwd.getText().trim();
         
-        
-        if(usrName.equals("") || password.equals(""))
-        {
-            JOptionPane.showMessageDialog(this, "User Name or Password cannot be empty!", "Warning", JOptionPane.WARNING_MESSAGE);
-        }
-        
-      else if(usrName.equals(DbUName.trim()) && password.equals(DbUPass.trim()))
-        {
-            RentalMainForm mf = new RentalMainForm();
-            this.hide();
-            mf.setVisible(true);
-        
-        }
-        else
-        {
-            JOptionPane.showMessageDialog(this,"incorrect Username or Password!", "Error",JOptionPane.ERROR_MESSAGE);
-        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -312,7 +323,9 @@ public class Login extends javax.swing.JFrame {
                 new Login().setVisible(true);
             }
         });
+        
     }
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

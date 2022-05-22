@@ -5,12 +5,23 @@
 package vehiclerentalsys;
 
 import java.awt.Color;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
+import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -24,6 +35,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
     public Vehicle_registration() {
         initComponents();
         resetFunction();
+        autoIdUpdate();
         
     }
 
@@ -56,6 +68,9 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jPanel2 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Vehicle Registration");
@@ -215,11 +230,11 @@ public class Vehicle_registration extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE))
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE))
+                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -244,7 +259,58 @@ public class Vehicle_registration extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(81, Short.MAX_VALUE))
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehicle Details"));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Vehicle ID", "Reg No.", "Vehicle Type", "Vehicle Model", "Availabilty", "Insurance Start Dt", "Insurance End Dt", "Remarks"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, true, true, true, true, true, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTable1.setColumnSelectionAllowed(true);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+        jTable1.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 653, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 505, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -254,13 +320,17 @@ public class Vehicle_registration extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(473, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(20, 20, 20))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -300,7 +370,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
         Boolean flag2 = false;
             String checkEmpty = jTextField2.getText();
                  String checkEmpty2 = jTextField3.getText();
-          if(checkEmpty == null || checkEmpty.equals(""))
+          if(checkEmpty == null || checkEmpty.isEmpty())
              {  
                   flag1 = true;
                }
@@ -325,6 +395,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
         else
              {
               SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+              String vehicle_id = jTextField1.getText().toUpperCase().trim();
                String vehicle_number =  jTextField2.getText().toUpperCase().trim();
                 String vehicle_type = jComboBox1.getSelectedItem().toString();
                      String vehicle_model = jTextField3.getText().toUpperCase().trim();
@@ -332,17 +403,82 @@ public class Vehicle_registration extends javax.swing.JFrame {
                                String ins_st_dt = df.format(jDateChooser1.getDate());
                                String ins_end_dt = df.format(jDateChooser2.getDate());
                                 String remarks = jTextPane1.getText();
-                               // System.out.println(vehicle_number+"\n"+vehicle_type+"\n"+vehicle_model+"\n"+availabilty+"\n"+ins_st_dt+"\n"+ins_end_dt+"\n"+remarks);
+                              // System.out.println(vehicle_id+"\n"+vehicle_number+"\n"+vehicle_type+"\n"+vehicle_model+"\n"+availabilty+"\n"+ins_st_dt+"\n"+ins_end_dt+"\n"+remarks);
+                               String query = "insert into `vehicle_details` (`v_id`,`v_reg_no`,`v_type`,`v_model`,`v_avble`,`v_ins_st_dt`,`v_ins_end_dt`,`v_remark`) values(?,?,?,?,?,?,?,?)";
+                                    
+                               
+                               
+               try {
+                   Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vehicle_db","root","");
+                    PreparedStatement stmnt = con.prepareStatement(query);
+                        stmnt.setString(1,vehicle_id);
+                        stmnt.setString(2, vehicle_number);
+                        stmnt.setString(3, vehicle_type);
+                        stmnt.setString(4,vehicle_model);
+                        stmnt.setString(5,availabilty);
+                        stmnt.setString(6,ins_st_dt);
+                        stmnt.setString(7,ins_end_dt);
+                        stmnt.setString(8,remarks);
+                        stmnt.executeUpdate();
+                        
+               } catch (SQLException ex) {
+                   Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
+               }
+                               
+                              
+                               
                                
                         
                    JOptionPane.showMessageDialog(this, "Vehicle "+jTextField2.getText()+" added successfully");
                         resetFunction();
              }
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    private void tableUpdate()
+    {
+        ResultSetMetaData rsmd = null;
+        Integer count;
+     String query = "select * from vehicle_details";
+        DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
+           model.setRowCount(0);
+           Connection con;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vehicle_db","root","");
+            PreparedStatement stmnt = con.prepareStatement(query);  
+            ResultSet rs = stmnt.executeQuery();
+             rsmd = rs.getMetaData();
+            count = rsmd.getColumnCount();
+                while(rs.next())
+                  
+                {                             
+                              Vector v1 = new Vector();
+                              for(int i = 1; i<= count;i++ ) 
+                              {
+                              v1.add(rs.getString(1));
+                              v1.add(rs.getString(2));
+                              v1.add(rs.getString(3));
+                              v1.add(rs.getString(4));
+                              v1.add(rs.getString(5));
+                              v1.add(rs.getString(6));
+                              v1.add(rs.getString(7));
+                              v1.add(rs.getString(8));
+                              }
+                              model.addRow(v1);
+                }
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                    
+                              
+    }
+    
     private void jComboBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -393,8 +529,34 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jDateChooser1.setDate(dt);
         jDateChooser2.setDate(dt2);
         jTextPane1.setText("");
+        autoIdUpdate();
+        tableUpdate();
     }
-
+private void autoIdUpdate()
+        
+{
+    Connection con;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vehicle_db","root","");
+                PreparedStatement stmt = con.prepareStatement("SELECT MAX(`v_id`) FROM `vehicle_details`");
+                   ResultSet rs = stmt.executeQuery();
+                        rs.next();
+                            if(rs.getString("MAX(`v_id`)") == null)
+                                {
+                                jTextField1.setText("A0001");
+                                }
+                             else
+            {
+                long id =  Long.parseLong(rs.getString("MAX(`v_id`)").substring(2,rs.getString("MAX(`v_id`)").length()));
+                id++;       
+                jTextField1.setText("A0" + String.format("%03d", id));            
+            }
+                        
+        } catch (SQLException ex) {
+            Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+}
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -411,7 +573,10 @@ public class Vehicle_registration extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
