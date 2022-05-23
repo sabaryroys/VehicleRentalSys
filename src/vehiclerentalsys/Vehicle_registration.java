@@ -11,6 +11,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.ZoneId;
@@ -288,6 +289,14 @@ public class Vehicle_registration extends javax.swing.JFrame {
             }
         });
         jTable1.setColumnSelectionAllowed(true);
+        jTable1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTable1FocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTable1FocusLost(evt);
+            }
+        });
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -468,7 +477,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
         }
-                    
+          jTable1.setAutoCreateRowSorter(true);
                               
     }
     
@@ -477,8 +486,61 @@ public class Vehicle_registration extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBox2ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        // TODO add your handling code here:
+      
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        DefaultTableModel dft = (DefaultTableModel)jTable1.getModel();
+        int rowNum = jTable1.getSelectedRow();
+        String YorN;
+        
+           
+            jTextField1.setText(dft.getValueAt(rowNum,0).toString());
+                jTextField2.setText(dft.getValueAt(rowNum, 1).toString());
+                    jComboBox1.setSelectedItem(dft.getValueAt(rowNum,2).toString());
+                        jTextField3.setText(dft.getValueAt(rowNum,3).toString());
+                     if(dft.getValueAt(rowNum, 4).toString().equals("Y"))
+                     {
+                         YorN = "Yes";
+                         
+                     }
+                     else
+                     {
+                      YorN = "No";   
+                     }
+                            jComboBox2.setSelectedItem(YorN);
+                             String d1 = dft.getValueAt(rowNum,5).toString();
+           try {
+           Date insStDt = df.parse(d1);
+            jDateChooser1.setDate(insStDt);
+        } catch (ParseException ex) {
+            Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+             String d2 = dft.getValueAt(rowNum, 6).toString();
+        try {
+          Date  insEndDt = df.parse(d2);
+             jDateChooser2.setDate(insEndDt);
+        } catch (ParseException ex) {
+            Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
+        }                   
+                                   
+                                        jTextPane1.setText(dft.getValueAt(rowNum,7).toString());
+                                    
+                                
+      
+                               
+                            
+                                
+                        
+                
+      
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusGained
+        jButton2.setEnabled(false);
+    }//GEN-LAST:event_jTable1FocusGained
+
+    private void jTable1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusLost
+        jButton2.setEnabled(true);
+    }//GEN-LAST:event_jTable1FocusLost
 
     /**
      * @param args the command line arguments
@@ -531,6 +593,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jTextPane1.setText("");
         autoIdUpdate();
         tableUpdate();
+        jButton2.setEnabled(true);
     }
 private void autoIdUpdate()
         
@@ -543,13 +606,13 @@ private void autoIdUpdate()
                         rs.next();
                             if(rs.getString("MAX(`v_id`)") == null)
                                 {
-                                jTextField1.setText("A0001");
+                                jTextField1.setText("V0001");
                                 }
                              else
             {
                 long id =  Long.parseLong(rs.getString("MAX(`v_id`)").substring(2,rs.getString("MAX(`v_id`)").length()));
                 id++;       
-                jTextField1.setText("A0" + String.format("%03d", id));            
+                jTextField1.setText("V0" + String.format("%03d", id));            
             }
                         
         } catch (SQLException ex) {
