@@ -29,11 +29,12 @@ import javax.swing.table.DefaultTableModel;
  * @author Sabari Roy
  */
 public class Vehicle_registration extends javax.swing.JFrame {
-
+ public String currentID = null;
     /**
      * Creates new form Vehicle_registration
      */
     public Vehicle_registration() {
+       
         initComponents();
         resetFunction();
         autoIdUpdate();
@@ -63,12 +64,16 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextPane1 = new javax.swing.JTextPane();
-        jButton1 = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox<>();
+        jLayeredPane1 = new javax.swing.JLayeredPane();
+        jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -130,13 +135,6 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jTextPane1.setBorder(new LineBorder(Color.GRAY,1));
         jScrollPane1.setViewportView(jTextPane1);
 
-        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sabari Roy\\Documents\\NetBeansProjects\\VehicleRentalSystem\\icons\\reset.png")); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
         jLabel7.setText("Vehicle Model");
 
@@ -144,13 +142,6 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField3FocusLost(evt);
-            }
-        });
-
-        jButton2.setText("Add");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
             }
         });
 
@@ -167,6 +158,75 @@ public class Vehicle_registration extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Add");
+        jButton2.setToolTipText("Add a new vehicle to the system");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton1.setForeground(new java.awt.Color(0, 0, 0));
+        jButton1.setIcon(new javax.swing.ImageIcon("C:\\Users\\Sabari Roy\\Documents\\NetBeansProjects\\VehicleRentalSystem\\icons\\reset.png")); // NOI18N
+        jButton1.setToolTipText("Reset all the fields");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Modify");
+        jButton3.setToolTipText("Update an existing vehicle");
+        jButton3.setEnabled(false);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Delete");
+        jButton4.setEnabled(false);
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        jLayeredPane1.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jLayeredPane1.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jLayeredPane1Layout = new javax.swing.GroupLayout(jLayeredPane1);
+        jLayeredPane1.setLayout(jLayeredPane1Layout);
+        jLayeredPane1Layout.setHorizontalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+        jLayeredPane1Layout.setVerticalGroup(
+            jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jLayeredPane1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jLayeredPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(55, Short.MAX_VALUE))
+        );
+
+        jLabel9.setForeground(new java.awt.Color(255, 255, 51));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -174,20 +234,18 @@ public class Vehicle_registration extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
                         .addComponent(jDateChooser1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jTextField3))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton1))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -202,8 +260,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
                                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGap(0, 0, Short.MAX_VALUE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -220,6 +277,9 @@ public class Vehicle_registration extends javax.swing.JFrame {
                                 .addGap(30, 30, 30)
                                 .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addGap(20, 20, 20))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLayeredPane1))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -257,10 +317,10 @@ public class Vehicle_registration extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(81, Short.MAX_VALUE))
+                .addComponent(jLayeredPane1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addGap(16, 16, 16))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Vehicle Details"));
@@ -339,7 +399,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 555, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -414,12 +474,23 @@ public class Vehicle_registration extends javax.swing.JFrame {
                                 String remarks = jTextPane1.getText();
                               // System.out.println(vehicle_id+"\n"+vehicle_number+"\n"+vehicle_type+"\n"+vehicle_model+"\n"+availabilty+"\n"+ins_st_dt+"\n"+ins_end_dt+"\n"+remarks);
                                String query = "insert into `vehicle_details` (`v_id`,`v_reg_no`,`v_type`,`v_model`,`v_avble`,`v_ins_st_dt`,`v_ins_end_dt`,`v_remark`) values(?,?,?,?,?,?,?,?)";
-                                    
+                               String v_num_check = jTextField2.getText().toUpperCase().trim();
+                               String query2 = "SELECT `v_reg_no` FROM `vehicle_details` where `v_reg_no` = ? ";
+                               
                                
                                
                try {
                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vehicle_db","root","");
-                    PreparedStatement stmnt = con.prepareStatement(query);
+                   PreparedStatement stmnt2 = con.prepareStatement(query2);
+                   stmnt2.setString(1,v_num_check);
+                   ResultSet rs = stmnt2.executeQuery();
+                   if(rs.next())
+                   {
+                       JOptionPane.showMessageDialog(this,"Vehicle number "+vehicle_number+" already exists!","Error", JOptionPane.ERROR_MESSAGE);
+                   }
+                   else
+                   {
+                   PreparedStatement stmnt = con.prepareStatement(query);
                         stmnt.setString(1,vehicle_id);
                         stmnt.setString(2, vehicle_number);
                         stmnt.setString(3, vehicle_type);
@@ -429,6 +500,9 @@ public class Vehicle_registration extends javax.swing.JFrame {
                         stmnt.setString(7,ins_end_dt);
                         stmnt.setString(8,remarks);
                         stmnt.executeUpdate();
+                        JOptionPane.showMessageDialog(this, "Vehicle "+jTextField2.getText()+" added successfully");
+                        resetFunction();
+                   }
                         
                } catch (SQLException ex) {
                    Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
@@ -438,15 +512,14 @@ public class Vehicle_registration extends javax.swing.JFrame {
                                
                                
                         
-                   JOptionPane.showMessageDialog(this, "Vehicle "+jTextField2.getText()+" added successfully");
-                        resetFunction();
+                   
              }
     }//GEN-LAST:event_jButton2ActionPerformed
     private void tableUpdate()
     {
         ResultSetMetaData rsmd = null;
         Integer count;
-     String query = "select * from vehicle_details";
+     String query = "SELECT `v_id`, `v_reg_no`, `v_type`, `v_model`, `v_avble`, `v_ins_st_dt`, `v_ins_end_dt`, `v_remark` FROM `vehicle_details`";
         DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
            model.setRowCount(0);
            Connection con;
@@ -523,24 +596,57 @@ public class Vehicle_registration extends javax.swing.JFrame {
         }                   
                                    
                                         jTextPane1.setText(dft.getValueAt(rowNum,7).toString());
+                                        jButton3.setEnabled(true);
+                                        jButton4.setEnabled(true);
+                                            if(jTextPane1.getText().trim().equalsIgnoreCase("Rented"))
+                                            {
+                                                jComboBox2.setEnabled(false);
+                                                jTextPane1.setEnabled(false);
+                                                jButton4.setEnabled(false);
+                                                jLabel9.setText("Rented vehicle vannot be modified/deleted");
+                                               
+                                            }
+                                                else
+                                            {
+                                                 jComboBox2.setEnabled(true);
+                                                jTextPane1.setEnabled(true);
+                                                jLabel9.setText("");
+                                            }
                                     
-                                
-      
-                               
-                            
-                                
-                        
-                
-      
+                                                     
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusGained
         jButton2.setEnabled(false);
+      
     }//GEN-LAST:event_jTable1FocusGained
 
     private void jTable1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusLost
-        jButton2.setEnabled(true);
+
     }//GEN-LAST:event_jTable1FocusLost
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+       modifyTable();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        DbConDelete db = new DbConDelete();
+        String query = "DELETE FROM `vehicle_details` WHERE `v_id` = ?";
+        String id = jTextField1.getText().toUpperCase().trim();
+            int dlgbxRslt = JOptionPane.showConfirmDialog(null,"Are you sure to delete vehicle data for "+jTextField2.getText().toUpperCase(),"Warning",JOptionPane.YES_NO_OPTION);
+            if(dlgbxRslt == JOptionPane.YES_OPTION)
+            {
+        
+     try {
+         db.deleteDb(query, id);
+         JOptionPane.showMessageDialog(this,"Vehicle data deleted successfully","Warning", JOptionPane.WARNING_MESSAGE);
+     } catch (SQLException ex) {
+         Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
+     }
+            }
+                
+            resetFunction();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -594,6 +700,8 @@ public class Vehicle_registration extends javax.swing.JFrame {
         autoIdUpdate();
         tableUpdate();
         jButton2.setEnabled(true);
+        jButton3.setEnabled(false);
+        jButton4.setEnabled(false);
     }
 private void autoIdUpdate()
         
@@ -612,17 +720,101 @@ private void autoIdUpdate()
             {
                 long id =  Long.parseLong(rs.getString("MAX(`v_id`)").substring(2,rs.getString("MAX(`v_id`)").length()));
                 id++;       
-                jTextField1.setText("V0" + String.format("%03d", id));            
+                jTextField1.setText("V0" + String.format("%03d", id)); 
+               
+                
             }
                         
         } catch (SQLException ex) {
             Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
     
+}
+
+private void modifyTable(){
+     Boolean flag1 = false;
+        Boolean flag2 = false;
+            String checkEmpty = jTextField2.getText();
+                 String checkEmpty2 = jTextField3.getText();
+          if(checkEmpty == null || checkEmpty.isEmpty())
+             {  
+                  flag1 = true;
+               }
+        if(checkEmpty2 == null || checkEmpty2.isEmpty())
+             {
+                     flag2 = true;
+                 }
+         //ends flag setting
+        if(flag1)
+        {
+            JOptionPane.showMessageDialog(this, "Registration Number cannot be Empty","Warning", JOptionPane.WARNING_MESSAGE);
+            jTextField2.grabFocus();
+                    jTextField2.setBorder(new LineBorder(Color.red,1));
+        }
+             else if(flag2)
+                     {
+            JOptionPane.showMessageDialog(this, "Vehicle model cannot be Empty","Warning", JOptionPane.WARNING_MESSAGE);
+             jTextField3.grabFocus();
+                      jTextField3.setBorder(new LineBorder(Color.red,1));
+       
+                     }
+        else
+             {
+              SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+              String vehicle_id = jTextField1.getText().toUpperCase().trim();
+               String vehicle_number =  jTextField2.getText().toUpperCase().trim();
+                String vehicle_type = jComboBox1.getSelectedItem().toString();
+                     String vehicle_model = jTextField3.getText().toUpperCase().trim();
+                      String availabilty = jComboBox2.getSelectedItem().toString().substring(0,1);
+                               String ins_st_dt = df.format(jDateChooser1.getDate());
+                               String ins_end_dt = df.format(jDateChooser2.getDate());
+                                String remarks = jTextPane1.getText();
+                              // System.out.println(vehicle_id+"\n"+vehicle_number+"\n"+vehicle_type+"\n"+vehicle_model+"\n"+availabilty+"\n"+ins_st_dt+"\n"+ins_end_dt+"\n"+remarks);
+                               String query = "UPDATE `vehicle_details` SET `v_reg_no`= ? ,`v_type`=? ,`v_model`=?,`v_avble`=?,`v_ins_st_dt`=?,`v_ins_end_dt`=?,`v_remark`=? WHERE `v_id` = ? ";
+                               String v_num_check = jTextField2.getText().toUpperCase().trim();
+                               String query2 = "SELECT `v_reg_no` FROM `vehicle_details` where `v_reg_no` = ? ";
+                               
+                               
+                               
+               try {
+                   Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vehicle_db","root","");
+                   PreparedStatement stmnt2 = con.prepareStatement(query2);
+                   stmnt2.setString(1,v_num_check);
+                   ResultSet rs = stmnt2.executeQuery();
+                   
+                   PreparedStatement stmnt = con.prepareStatement(query);
+                        //stmnt.setString(1,vehicle_id);
+                        stmnt.setString(1, vehicle_number);
+                        stmnt.setString(2, vehicle_type);
+                        stmnt.setString(3,vehicle_model);
+                        stmnt.setString(4,availabilty);
+                        stmnt.setString(5,ins_st_dt);
+                        stmnt.setString(6,ins_end_dt);
+                        stmnt.setString(7,remarks);
+                        stmnt.setString(8,vehicle_id);
+                        
+                        stmnt.executeUpdate();
+                        JOptionPane.showMessageDialog(this, "Vehicle ID "+jTextField1.getText()+" Vehicle data modified successfully");
+                        resetFunction();
+                   
+                        
+               } catch (SQLException ex) {
+                   Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
+               }
+                               
+                              
+                               
+                               
+                        
+                   
+             }
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
@@ -635,6 +827,8 @@ private void autoIdUpdate()
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
