@@ -223,7 +223,7 @@ public class Login extends javax.swing.JFrame {
         
         if(usrName.equals("") || password.equals(""))
         {
-            JOptionPane.showMessageDialog(this, "User Name or Password cannot be empty!", "Warning", JOptionPane.WARNING_MESSAGE);
+            JOptionPane.showMessageDialog(this, "User name or Password cannot be empty!", "Warning", JOptionPane.WARNING_MESSAGE);
            break;
         }
         
@@ -231,7 +231,7 @@ public class Login extends javax.swing.JFrame {
         {
             
             
-            RentalMainForm rm = new RentalMainForm();
+            RentalMainForm rm = new RentalMainForm(usrName);
     
             rm.setVisible(true);
             this.hide();
@@ -242,7 +242,7 @@ public class Login extends javax.swing.JFrame {
         }
         else
         {
-            JOptionPane.showMessageDialog(this,"incorrect Username or Password!", "Error",JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,"Incorrect Username or Password!", "Error",JOptionPane.ERROR_MESSAGE);
             break;
         }
                    

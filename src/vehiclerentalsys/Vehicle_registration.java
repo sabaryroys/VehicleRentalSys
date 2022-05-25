@@ -30,16 +30,21 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Vehicle_registration extends javax.swing.JFrame {
  public String currentID = null;
+ public static String currentUser = null;
+ 
     /**
      * Creates new form Vehicle_registration
      */
-    public Vehicle_registration() {
+    public Vehicle_registration(String userName) {
        
         initComponents();
         resetFunction();
         autoIdUpdate();
+        this.currentUser = userName;
         
     }
+
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -73,7 +78,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jLabel9 = new javax.swing.JLabel();
+        notifLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -101,7 +106,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
         });
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel2.setText("Registration No.");
+        jLabel2.setText("Registration No.*");
 
         jTextField2.setBorder(new LineBorder(Color.GRAY,1));
         jTextField2.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -133,10 +138,15 @@ public class Vehicle_registration extends javax.swing.JFrame {
         jLabel6.setText("Remarks/Comments");
 
         jTextPane1.setBorder(new LineBorder(Color.GRAY,1));
+        jTextPane1.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                jTextPane1FocusLost(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTextPane1);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 0, 12)); // NOI18N
-        jLabel7.setText("Vehicle Model");
+        jLabel7.setText("Vehicle Model*");
 
         jTextField3.setBorder(new LineBorder(Color.GRAY,1));
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -225,7 +235,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
                 .addContainerGap(55, Short.MAX_VALUE))
         );
 
-        jLabel9.setForeground(new java.awt.Color(255, 255, 51));
+        notifLabel.setForeground(new java.awt.Color(255, 0, 0));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -234,7 +244,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(notifLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel4)
                         .addGap(18, 18, 18)
@@ -319,7 +329,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLayeredPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
+                .addComponent(notifLabel)
                 .addGap(16, 16, 16))
         );
 
@@ -420,8 +430,9 @@ public class Vehicle_registration extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void formWindowClosed(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosed
-        RentalMainForm rntl = new RentalMainForm();
-        rntl.show();
+RentalMainForm rmf = new RentalMainForm(currentUser);
+rmf.show();
+       
     }//GEN-LAST:event_formWindowClosed
 
     private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
@@ -603,14 +614,14 @@ public class Vehicle_registration extends javax.swing.JFrame {
                                                 jComboBox2.setEnabled(false);
                                                 jTextPane1.setEnabled(false);
                                                 jButton4.setEnabled(false);
-                                                jLabel9.setText("Rented vehicle vannot be modified/deleted");
+                                                notifLabel.setText("Rented vehicle cannot be modified/deleted");
                                                
                                             }
                                                 else
                                             {
                                                  jComboBox2.setEnabled(true);
                                                 jTextPane1.setEnabled(true);
-                                                jLabel9.setText("");
+                                                notifLabel.setText("");
                                             }
                                     
                                                      
@@ -633,7 +644,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
         DbConDelete db = new DbConDelete();
         String query = "DELETE FROM `vehicle_details` WHERE `v_id` = ?";
         String id = jTextField1.getText().toUpperCase().trim();
-            int dlgbxRslt = JOptionPane.showConfirmDialog(null,"Are you sure to delete vehicle data for "+jTextField2.getText().toUpperCase(),"Warning",JOptionPane.YES_NO_OPTION);
+            int dlgbxRslt = JOptionPane.showConfirmDialog(null,"Are you sure you want to delete vehicle data for "+jTextField2.getText().toUpperCase(),"Warning",JOptionPane.YES_NO_OPTION);
             if(dlgbxRslt == JOptionPane.YES_OPTION)
             {
         
@@ -647,6 +658,14 @@ public class Vehicle_registration extends javax.swing.JFrame {
                 
             resetFunction();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jTextPane1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextPane1FocusLost
+        if(jTextPane1.getText().equalsIgnoreCase("Rented"))
+        {
+            jButton3.setEnabled(false);
+            notifLabel.setText("Cannot use the keyword rented for modification");
+        }
+    }//GEN-LAST:event_jTextPane1FocusLost
 
     /**
      * @param args the command line arguments
@@ -678,7 +697,7 @@ public class Vehicle_registration extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Vehicle_registration().setVisible(true);
+                new Vehicle_registration(currentUser).setVisible(true);
             }
         });
     }
@@ -827,7 +846,6 @@ private void modifyTable(){
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -838,5 +856,6 @@ private void modifyTable(){
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextPane jTextPane1;
+    private javax.swing.JLabel notifLabel;
     // End of variables declaration//GEN-END:variables
 }
