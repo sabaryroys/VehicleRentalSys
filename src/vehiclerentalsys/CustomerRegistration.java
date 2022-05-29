@@ -4,17 +4,26 @@
  */
 package vehiclerentalsys;
 
+import java.io.File;
+import java.io.IOException;
+import javax.swing.JFileChooser;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import org.apache.commons.io.FileUtils;
+
+
 /**
  *
  * @author Sabari Roy
  */
 public class CustomerRegistration extends javax.swing.JFrame {
+    String file_name;
+    String dest_file_path = "C:\\Users\\Sabari Roy\\Documents\\NetBeansProjects\\VehicleRentalSystem\\licence\\";
 
     /**
      * Creates new form CustomerRegistration
      * 
      */
-     CustomerFileUpload cfpl = new CustomerFileUpload();
+     
     public CustomerRegistration() {
        
         initComponents();
@@ -216,7 +225,49 @@ public class CustomerRegistration extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-cfpl.setVisible(true);
+//cfpl.setVisible(true);
+    JFileChooser jFileChooser1 = new JFileChooser();
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("Image files", ".jpeg",".png",".JPG","JPG");
+        jFileChooser1.setAcceptAllFileFilterUsed(false);
+            jFileChooser1.addChoosableFileFilter(filter);
+               //  jFileChooser1.setFileFilter(filter);
+               try{
+                     jFileChooser1.showOpenDialog(null);
+                         File f = jFileChooser1.getSelectedFile();
+                         file_name = f.getName();
+                         dest_file_path = dest_file_path+file_name;
+                         
+                        //  File f2 = new File(dest_file_path+file_name);
+                          File destFile = new File(dest_file_path);
+                          
+                         
+                         
+                         //String curr_file_path = f.getAbsolutePath();
+                         
+                          if(destFile.exists())
+                          {
+                              destFile.delete();
+                          }
+                          
+                         
+                         jButton1.setLabel(file_name);
+                         
+                         
+                         copyFiles(f, destFile);
+               }
+               catch(NullPointerException e)
+                       {
+                           System.out.println("No files chosen");
+                            jButton1.setLabel("No file chosen.");
+                                
+                       }
+               
+               
+                
+            //System.out.println(file_name);
+                
+            
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -264,6 +315,22 @@ private void resetFunction()
     jTextField4.setText("");
     jTextPane1.setText("");
     jComboBox1.setSelectedIndex(76);
+    
+}
+public void copyFiles(File src,File dest)
+{
+ 
+    
+    try{
+      
+        
+        FileUtils.copyFile(src, dest);
+        
+        
+    }
+    catch(IOException e)
+    {
+    }
     
 }
     // Variables declaration - do not modify//GEN-BEGIN:variables
