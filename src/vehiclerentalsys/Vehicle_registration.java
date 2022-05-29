@@ -906,13 +906,17 @@ private void modifyTable(){
 }
   private void searchByRegNum()
     {
+        
         ResultSetMetaData rsmd = null;
         Integer count;
         String searchKey = srchField.getText().trim().toUpperCase();
      String query = "SELECT `v_id`, `v_reg_no`, `v_type`, `v_model`, `v_avble`, `v_ins_st_dt`, `v_ins_end_dt`, `v_remark` FROM `vehicle_details` where `v_reg_no` LIKE '"+searchKey+"%'";
         DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
            model.setRowCount(0);
-           Connection con;
+          
+           
+           
+           
         try {
             DbConSelect db = new DbConSelect();
             
@@ -993,3 +997,4 @@ private void modifyTable(){
     private javax.swing.JTextField srchField;
     // End of variables declaration//GEN-END:variables
 }
+//
