@@ -242,28 +242,27 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_pwdActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       
+         String usrName = uname.getText().trim();
+        String password = pwd.getText().trim();
+          if(usrName.equals("") || password.equals(""))
+        {
+            JOptionPane.showMessageDialog(this, "User name or Password cannot be empty!", "Warning", JOptionPane.WARNING_MESSAGE);
+          
+        }
+          Boolean flag = false;
         ResultSet rs = null;
        DbConSelect db = new DbConSelect();
        String query;
         query = "select * from vehicle_db.user_pass";
         try {
              rs = db.selectDb(query);
-             while(rs.next())
-        {
+             
+         while(rs.next()){
             DbUName = rs.getString("uname");
             DbUPass = rs.getString("password");
-            String usrName = uname.getText().trim();
-        String password = pwd.getText().trim();
-        
-        
-        if(usrName.equals("") || password.equals(""))
-        {
-            JOptionPane.showMessageDialog(this, "User name or Password cannot be empty!", "Warning", JOptionPane.WARNING_MESSAGE);
-           break;
-        }
-        
-      else if(usrName.equals(DbUName.trim()) && password.equals(DbUPass.trim()))
+     
+       
+       if(usrName.equals(DbUName.trim()) && password.equals(DbUPass.trim()))
         {
             
             
@@ -271,21 +270,26 @@ public class Login extends javax.swing.JFrame {
     
             rm.setVisible(true);
             this.hide();
-            
-            
+           flag = true;
             break;
         
         }
-        else
-        {
-            JOptionPane.showMessageDialog(this,"Incorrect Username or Password!", "Error",JOptionPane.ERROR_MESSAGE);
-            break;
-        }
-                   
+       else
+       {
+           flag = false;
+       }
+       
+         
+        
   
         }
+         
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        if(!flag)
+        {
+            JOptionPane.showMessageDialog(this,"Incorrect Username or Password!", "Error",JOptionPane.ERROR_MESSAGE);
         }
         
         
