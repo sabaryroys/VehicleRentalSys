@@ -839,7 +839,7 @@ else
                      int dlgBx = JOptionPane.showConfirmDialog(null,"Please verify the data \nCustomer ID: \t"+cust_id+"\nCustomer Name: \t"+cust_firstName+" "+cust_lastName+"\nCustomer Address: \t"+cust_address+"\nCustomer city : \t"+cust_city+"\nCustomer Country: \t"+cust_country+"\nCustomer PIN: \t"+cust_pincode+"\nCustomer Phone: \t"+cust_phone,"Confirm",JOptionPane.YES_NO_OPTION);
                      if(dlgBx == JOptionPane.OK_OPTION)
                      {
-                     String query = "UPDATE `customer` SET `cust_fname`='"+cust_firstName+"',`cust_lname`='"+cust_lastName+"',`cust_adrs`='"+cust_address+"',`cust_city`='"+cust_city+"',`cust_country`='"+cust_country+"',`cust_pin`='"+cust_pincode+"',`cust_ph_num`='"+cust_phone+"' WHERE `cust_id` = '"+cust_id+"'";
+                     String query = "UPDATE `customer` SET `cust_fname`='"+cust_firstName+"',`cust_lname`='"+cust_lastName+"',`cust_adrs`='"+cust_address+"',`cust_city`='"+cust_city+"',`cust_country`='"+cust_country+"',`cust_pin`='"+cust_pincode+"',`cust_ph_num`='"+cust_phone+"',`cust_create_tmstmp`= CURRENT_TIMESTAMP WHERE `cust_id` = '"+cust_id+"'";
                          try {
                              update.updateDb(query);
                          } catch (SQLException ex) {
