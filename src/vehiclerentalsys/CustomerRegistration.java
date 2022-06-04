@@ -11,13 +11,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
 import org.apache.commons.io.FileUtils;
 
 
@@ -30,6 +33,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
     String file_name ="";
     String dest_file_path = "C:\\Users\\Sabari Roy\\Documents\\NetBeansProjects\\VehicleRentalSystem\\licence\\";
     Boolean error_flag = true;
+     JFileChooser jFileChooser1 = new JFileChooser("C:\\Users\\Sabari Roy\\Documents\\NetBeansProjects\\VehicleRentalSystem\\licence\\copiesfromscanner\\");
     File f;
     File NewName;
 
@@ -82,7 +86,11 @@ public class CustomerRegistration extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         notify = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add new customer");
@@ -127,6 +135,9 @@ public class CustomerRegistration extends javax.swing.JFrame {
 
         jTextField3.setBorder(new LineBorder(Color.GRAY,1));
         jTextField3.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                jTextField3FocusGained(evt);
+            }
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField3FocusLost(evt);
             }
@@ -227,13 +238,10 @@ public class CustomerRegistration extends javax.swing.JFrame {
                                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jTextField2)
@@ -309,6 +317,13 @@ public class CustomerRegistration extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setText("Modify");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -316,6 +331,8 @@ public class CustomerRegistration extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton3)
                 .addContainerGap())
@@ -326,7 +343,8 @@ public class CustomerRegistration extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
                 .addContainerGap())
         );
 
@@ -358,6 +376,49 @@ public class CustomerRegistration extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Customer Information"));
+
+        jTable1.setBorder(null);
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Cust ID", "First Name", "Last Name", "Address", "City", "Country", "PIN Code", "Phone Number", "DL IMG ID"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -365,13 +426,17 @@ public class CustomerRegistration extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(593, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(12, 12, 12))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 46, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addGap(0, 80, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -396,7 +461,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //cfpl.setVisible(true);
-    JFileChooser jFileChooser1 = new JFileChooser("C:\\Users\\Sabari Roy\\Documents\\NetBeansProjects\\VehicleRentalSystem\\licence\\copiesfromscanner\\");
+   
     FileNameExtensionFilter filter = new FileNameExtensionFilter("Image files", ".jpeg","jpeg",".png",".JPG","JPG");
         jFileChooser1.setAcceptAllFileFilterUsed(false);
             jFileChooser1.addChoosableFileFilter(filter);
@@ -464,7 +529,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
                 PreparedStatement stmnt = con.prepareStatement(ins_query);
               
              
-              int dlgBx = JOptionPane.showConfirmDialog(null,"Please verify the data \nCustomer ID: \t"+cust_id+"\nCustomer Name: \t"+cust_firstName+" "+cust_lastName+"\nCustomer Address: \t"+cust_address+"\nCustomer city : \t"+cust_city+"\nCustomer Country: \t"+cust_country+"\nCustomer PIN: \t"+cust_pincode+"\nCustomer Phone: \t"+cust_phone+"\nCustomer DL: "+f.getName(),"Warning",JOptionPane.YES_NO_OPTION);
+              int dlgBx = JOptionPane.showConfirmDialog(null,"Please verify the data \nCustomer ID: \t"+cust_id+"\nCustomer Name: \t"+cust_firstName+" "+cust_lastName+"\nCustomer Address: \t"+cust_address+"\nCustomer city : \t"+cust_city+"\nCustomer Country: \t"+cust_country+"\nCustomer PIN: \t"+cust_pincode+"\nCustomer Phone: \t"+cust_phone+"\nCustomer DL: "+f.getName(),"Confirm?",JOptionPane.YES_NO_OPTION);
               if(dlgBx == JOptionPane.OK_OPTION)
               {
                   System.out.println(ins_query);
@@ -494,9 +559,12 @@ public class CustomerRegistration extends javax.swing.JFrame {
     private void jTextField2FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField2FocusLost
        if(jTextField2.getText().equals("") || jTextField2.getText() == "")
        {
-           notify.setText("First Name cannot be empty");
+          notify.setText("First Name cannot be empty");
            
            jTextField2.setBorder(new LineBorder(Color.red,1));
+           error_flag = true;
+           
+           //jTextField2.setBorder(new LineBorder(Color.gray,1));
            error_flag = true;
           
        }
@@ -664,6 +732,128 @@ public class CustomerRegistration extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jTextField6KeyPressed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+ jButton4.setEnabled(true);
+        if(jTextField2.getText().equals("") || jTextField2.getText() == "")
+       {
+           notify.setText("First Name cannot be empty");
+           
+           jTextField2.setBorder(new LineBorder(Color.red,1));
+           error_flag = true;
+           
+       }  
+else
+  {
+      notify.setText("");
+           
+           jTextField2.setBorder(new LineBorder(Color.gray,1));
+           error_flag = true;
+  }
+//to remove the red borders from field validations 
+        jTextField2.setBorder(new LineBorder(Color.GRAY,1));
+    jTextField3.setBorder(new LineBorder(Color.GRAY,1));
+    jTextField4.setBorder(new LineBorder(Color.GRAY,1));
+    jTextPane1.setBorder(new LineBorder(Color.GRAY,1));
+    jTextField5.setBorder(new LineBorder(Color.GRAY,1));
+    jTextField6.setBorder(new LineBorder(Color.GRAY,1));
+        notify.setText("");
+        
+        DefaultTableModel dft = (DefaultTableModel) jTable1.getModel();
+        int rowNum = jTable1.getSelectedRow();
+            
+        jTextField1.setText(dft.getValueAt(rowNum,0).toString());
+             jTextField2.setText(dft.getValueAt(rowNum,1).toString());
+                 jTextField3.setText(dft.getValueAt(rowNum,2).toString());
+                     jTextPane1.setText(dft.getValueAt(rowNum,3).toString());
+                         jTextField4.setText(dft.getValueAt(rowNum,4).toString());
+                               jComboBox1.setSelectedItem(dft.getValueAt(rowNum,5));
+                                 jTextField5.setText(dft.getValueAt(rowNum,6).toString());
+                                     jTextField6.setText(dft.getValueAt(rowNum,7).toString());
+                                     jButton2.setEnabled(false);
+        
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTextField3FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField3FocusGained
+      
+    }//GEN-LAST:event_jTextField3FocusGained
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        Boolean file_flag = false;
+        String cust_fl_name ="";
+                  DbConUpdate update = new DbConUpdate();
+        if(modifyErrorCheck())
+        {
+             JOptionPane.showMessageDialog(this, "Please fill all mandatory fields","Warning", JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
+           try{
+               if(jFileChooser1.getSelectedFile() == null)
+               {
+                //  System.out.println("No file to update");
+                  
+               }
+                else
+               {
+                   
+                   file_flag = true; 
+                  
+                   
+               }
+           }
+           catch(NullPointerException e)
+           {
+               System.err.println("Caught");
+           }
+              
+                   
+                String cust_id = jTextField1.getText();
+                String cust_firstName = jTextField2.getText();
+                String cust_lastName = jTextField3.getText();
+                String cust_address = jTextPane1.getText();
+                String cust_city = jTextField4.getText();
+                String cust_country = jComboBox1.getSelectedItem().toString();
+                String cust_pincode =  jTextField5.getText();
+                String cust_phone = jTextField6.getText();
+               
+                if(file_flag)
+                {
+             int dlgBx = JOptionPane.showConfirmDialog(null,"Please verify the data \nCustomer ID: \t"+cust_id+"\nCustomer Name: \t"+cust_firstName+" "+cust_lastName+"\nCustomer Address: \t"+cust_address+"\nCustomer city : \t"+cust_city+"\nCustomer Country: \t"+cust_country+"\nCustomer PIN: \t"+cust_pincode+"\nCustomer Phone: \t"+cust_phone+"\nCustomer DL: "+f.getName(),"Confirm",JOptionPane.YES_NO_OPTION);
+             if(dlgBx == JOptionPane.OK_OPTION)
+             {
+                 copyFiles(f);
+                 cust_fl_name = NewName.getName();
+                 String query = "UPDATE `customer` SET `cust_fname`='"+cust_firstName+"',`cust_lname`='"+cust_lastName+"',`cust_adrs`='"+cust_address+"',`cust_city`='"+cust_city+"',`cust_country`='"+cust_country+"',`cust_pin`='"+cust_pincode+"',`cust_ph_num`='"+cust_phone+"',`cust_dl_fl_name`='"+cust_fl_name+"',`cust_create_tmstmp`= CURRENT_TIMESTAMP WHERE `cust_id` = '"+cust_id+"'";
+                 //System.err.println(query);
+               
+                 try {
+                     update.updateDb(query);
+                 } catch (SQLException ex) {
+                     Logger.getLogger(CustomerRegistration.class.getName()).log(Level.SEVERE, null, ex);
+                 }
+                 JOptionPane.showMessageDialog(this, "Customer "+cust_id+" updated successfully");
+             }
+        }
+                else
+                {
+                     int dlgBx = JOptionPane.showConfirmDialog(null,"Please verify the data \nCustomer ID: \t"+cust_id+"\nCustomer Name: \t"+cust_firstName+" "+cust_lastName+"\nCustomer Address: \t"+cust_address+"\nCustomer city : \t"+cust_city+"\nCustomer Country: \t"+cust_country+"\nCustomer PIN: \t"+cust_pincode+"\nCustomer Phone: \t"+cust_phone,"Confirm",JOptionPane.YES_NO_OPTION);
+                     if(dlgBx == JOptionPane.OK_OPTION)
+                     {
+                     String query = "UPDATE `customer` SET `cust_fname`='"+cust_firstName+"',`cust_lname`='"+cust_lastName+"',`cust_adrs`='"+cust_address+"',`cust_city`='"+cust_city+"',`cust_country`='"+cust_country+"',`cust_pin`='"+cust_pincode+"',`cust_ph_num`='"+cust_phone+"' WHERE `cust_id` = '"+cust_id+"'";
+                         try {
+                             update.updateDb(query);
+                         } catch (SQLException ex) {
+                             Logger.getLogger(CustomerRegistration.class.getName()).log(Level.SEVERE, null, ex);
+                         }
+                         JOptionPane.showMessageDialog(this, "Customer "+cust_id+" updated successfully");
+                         
+                     }     
+                    // System.err.println(query);
+                        
+                }
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -729,6 +919,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
 private void resetFunction()
 {
     autoUpdateCustID();
+    tableUpdate();
     jTextField2.setText("");
     jTextField2.grabFocus();
     jTextField3.setText("");
@@ -745,6 +936,8 @@ private void resetFunction()
     jTextField5.setBorder(new LineBorder(Color.GRAY,1));
     jTextField6.setBorder(new LineBorder(Color.GRAY,1));
     notify.setText("");
+    jButton2.setEnabled(true);
+    jButton4.setEnabled(false);
     
 }
 
@@ -781,10 +974,87 @@ public void copyFiles(File src)
     }
     
 }
+ private void tableUpdate()
+    {
+        ResultSetMetaData rsmd = null;
+        Integer count;
+     String query = "SELECT `cust_id`, `cust_fname`, `cust_lname`, `cust_adrs`, `cust_city`, `cust_country`, `cust_pin`, `cust_ph_num`, `cust_dl_fl_name` FROM `customer`";
+        DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
+           model.setRowCount(0);
+           Connection con;
+        try {
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vehicle_db","root","");
+            PreparedStatement stmnt = con.prepareStatement(query);  
+            ResultSet rs = stmnt.executeQuery();
+             rsmd = rs.getMetaData();
+            count = rsmd.getColumnCount();
+                while(rs.next())
+                  
+                {                             
+                              Vector v1 = new Vector();
+                              for(int i = 1; i<= count;i++ ) 
+                              {
+                              v1.add(rs.getString(1));
+                              v1.add(rs.getString(2));
+                              v1.add(rs.getString(3));
+                              v1.add(rs.getString(4));
+                              v1.add(rs.getString(5));
+                              v1.add(rs.getString(6));
+                              v1.add(rs.getString(7));
+                              v1.add(rs.getString(8));
+                              v1.add(rs.getString(9));
+                              }
+                              model.addRow(v1);
+                }
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         jTable1.setAutoCreateRowSorter(true);
+                              
+    }
+ private boolean modifyErrorCheck()
+ {
+     Boolean errorFlag2 = false;
+     if(jTextField1.getText().equals(""))
+     {
+         errorFlag2 = true;
+     }
+     else if(jTextField2.getText().equals(""))
+     {
+         errorFlag2 = true;
+     }
+      else if(jTextField3.getText().equals(""))
+     {
+         errorFlag2 = true;
+     }
+      else if(jTextPane1.getText().equals(""))
+     {
+         errorFlag2 = true;
+     }
+      else if(jTextField4.getText().equals(""))
+     {
+         errorFlag2 = true;
+     }
+      else if(jTextField5.getText().equals(""))
+     {
+         errorFlag2 = true;
+     }
+      else if(jTextField6.getText().equals(""))
+     {
+         errorFlag2 = true;
+     }
+     else
+      {
+          errorFlag2 = false;
+      }
+     return errorFlag2;
+ }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -799,7 +1069,10 @@ public void copyFiles(File src)
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
