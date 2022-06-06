@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: May 23, 2022 at 06:40 AM
+-- Generation Time: Jun 06, 2022 at 10:29 AM
 -- Server version: 8.0.27
 -- PHP Version: 7.4.26
 
@@ -24,6 +24,35 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+CREATE TABLE IF NOT EXISTS `customer` (
+  `cust_id` varchar(5) NOT NULL,
+  `cust_fname` varchar(30) NOT NULL,
+  `cust_lname` varchar(30) NOT NULL,
+  `cust_adrs` text NOT NULL,
+  `cust_city` varchar(40) NOT NULL,
+  `cust_country` varchar(40) NOT NULL,
+  `cust_pin` int NOT NULL,
+  `cust_ph_num` bigint NOT NULL,
+  `cust_dl_fl_name` varchar(30) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `cust_create_tmstmp` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`cust_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci COMMENT='for storing customer details';
+
+--
+-- Dumping data for table `customer`
+--
+
+INSERT INTO `customer` (`cust_id`, `cust_fname`, `cust_lname`, `cust_adrs`, `cust_city`, `cust_country`, `cust_pin`, `cust_ph_num`, `cust_dl_fl_name`, `cust_create_tmstmp`) VALUES
+('C0001', 'SABARI', 'ROY S', 'LEKSHMI VASAVAM,KARUNILACODE,EDAVA P.O ,VARKALA', 'VARKALA', 'India', 695311, 9895332879, 'C0001.JPG', '2022-06-04 10:03:36'),
+('C0002', 'VISHNU', 'SREE', 'VISHNU VILLA,KURAKKANI,VARKALA P.O', 'VARKALA', 'India', 695141, 9400861071, 'C0002.JPG', '2022-06-03 15:21:32');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `user_pass`
 --
 
@@ -39,7 +68,9 @@ CREATE TABLE IF NOT EXISTS `user_pass` (
 --
 
 INSERT INTO `user_pass` (`uname`, `password`) VALUES
-('sabari', '1234');
+('admin', 'admin'),
+('sabari', '1234'),
+('sabaris', '112233');
 
 -- --------------------------------------------------------
 
@@ -64,9 +95,10 @@ CREATE TABLE IF NOT EXISTS `vehicle_details` (
 --
 
 INSERT INTO `vehicle_details` (`v_id`, `v_reg_no`, `v_type`, `v_model`, `v_avble`, `v_ins_st_dt`, `v_ins_end_dt`, `v_remark`) VALUES
-('A0001', 'KL16F3899', 'Motor Cycle w/Gear', 'YAMAHA R15', 'Y', '2022-05-22', '2023-05-22', 'Good condition'),
-('A0002', 'KL16P583', 'Motor Cycle w/Gear', 'ROYAL ENFILED CLASSIC 350', 'Y', '2021-10-18', '2022-10-17', 'Good condition'),
-('A0003', 'KL16E8870', 'Scooter', 'HERO HONDA PASSION', 'Y', '2021-11-24', '2023-11-23', 'Good conditons');
+('V0001', 'KL16F3899', 'Motor Cycle w/Gear', 'YAMAHA R15', 'Y', '2022-05-22', '2023-05-21', 'Available'),
+('V0002', 'KL16P583', 'Motor Cycle w/Gear', 'ROYAL ENFILED CLASSIC 350', 'Y', '2021-10-18', '2022-10-17', 'Available'),
+('V0003', 'KL16E8870', 'Motor Cycle w/Gear', 'HERO HONDA PASSION', 'Y', '2021-11-24', '2023-11-23', 'Available'),
+('V0004', 'KL16J2345', 'Scooter', 'HONDA DIO', 'N', '2023-10-18', '2024-10-17', 'Rented');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
