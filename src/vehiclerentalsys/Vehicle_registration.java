@@ -910,7 +910,7 @@ private void modifyTable(){
         ResultSetMetaData rsmd = null;
         Integer count;
         String searchKey = srchField.getText().trim().toUpperCase();
-     String query = "SELECT `v_id`, `v_reg_no`, `v_type`, `v_model`, `v_avble`, `v_ins_st_dt`, `v_ins_end_dt`, `v_remark` FROM `vehicle_details` where `v_reg_no` LIKE '"+searchKey+"%'";
+     String query = "SELECT `v_id`, `v_reg_no`, `v_type`, `v_model`, `v_avble`, `v_ins_st_dt`, `v_ins_end_dt`, `v_remark` FROM `vehicle_details` where `v_reg_no` OR `v_id` LIKE '"+searchKey+"%'";
         DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
            model.setRowCount(0);
           

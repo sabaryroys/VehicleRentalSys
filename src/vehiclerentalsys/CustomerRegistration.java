@@ -31,9 +31,9 @@ import org.apache.commons.io.FileUtils;
 public class CustomerRegistration extends javax.swing.JFrame {
    private static String usr = null;
     String file_name ="";
-    String dest_file_path = "C:\\Users\\Sabari Roy\\Documents\\NetBeansProjects\\VehicleRentalSystem\\licence\\";
+    String dest_file_path = "C:\\Users\\USER\\Documents\\NetBeansProjects\\VehicleRentalSys\\licence\\";
     Boolean error_flag = true;
-     JFileChooser jFileChooser1 = new JFileChooser("C:\\Users\\Sabari Roy\\Documents\\NetBeansProjects\\VehicleRentalSystem\\licence\\copiesfromscanner\\");
+     JFileChooser jFileChooser1 = new JFileChooser("C:\\Users\\USER\\Documents\\NetBeansProjects\\VehicleRentalSys\\licence\\copiesfromscanner\\");
     File f;
     File NewName;
 
@@ -87,6 +87,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         notify = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -253,7 +254,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
                             .addComponent(jTextField3, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
@@ -277,8 +278,8 @@ public class CustomerRegistration extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
+                        .addGap(0, 58, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -324,6 +325,13 @@ public class CustomerRegistration extends javax.swing.JFrame {
             }
         });
 
+        jButton5.setText("Delete");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -331,9 +339,11 @@ public class CustomerRegistration extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton3)
                 .addContainerGap())
         );
@@ -344,7 +354,8 @@ public class CustomerRegistration extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
-                    .addComponent(jButton4))
+                    .addComponent(jButton4)
+                    .addComponent(jButton5))
                 .addContainerGap())
         );
 
@@ -360,25 +371,25 @@ public class CustomerRegistration extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(notify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(notify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
+                .addComponent(notify)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(notify)
                 .addContainerGap())
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Customer Information"));
 
-        jTable1.setBorder(null);
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -408,15 +419,15 @@ public class CustomerRegistration extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 664, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 602, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jScrollPane2)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
@@ -426,17 +437,17 @@ public class CustomerRegistration extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(12, 12, 12))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(0, 80, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -462,7 +473,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 //cfpl.setVisible(true);
    
-    FileNameExtensionFilter filter = new FileNameExtensionFilter("Image files", ".jpeg","jpeg",".png",".JPG","JPG");
+    FileNameExtensionFilter filter = new FileNameExtensionFilter("Image files", ".jpeg","jpeg",".png",".JPG","JPG",".jpg","jpg");
         jFileChooser1.setAcceptAllFileFilterUsed(false);
             jFileChooser1.addChoosableFileFilter(filter);
             
@@ -734,6 +745,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
  jButton4.setEnabled(true);
+jButton5.setEnabled(true);
         if(jTextField2.getText().equals("") || jTextField2.getText() == "")
        {
            notify.setText("First Name cannot be empty");
@@ -854,6 +866,29 @@ else
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        String cust_id = jTextField1.getText().trim();
+        String fName = jTextField2.getText();
+        String lName = jTextField3.getText();
+        DbConDelete del = new DbConDelete();
+        String query = "DELETE FROM `customer` WHERE `cust_id` = ? ";
+            int rs = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete ?", "Warning", JOptionPane.OK_CANCEL_OPTION);
+                if(rs == JOptionPane.OK_OPTION)
+                {
+            try {
+                del.deleteDb(query, cust_id);
+               
+            } catch (SQLException ex) {
+                Logger.getLogger(CustomerRegistration.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                    
+                     JOptionPane.showMessageDialog(this, "Customer "+fName+" "+lName+" deleted successfully");
+                      resetFunction();
+                     
+                }
+         
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -938,6 +973,7 @@ private void resetFunction()
     notify.setText("");
     jButton2.setEnabled(true);
     jButton4.setEnabled(false);
+    jButton5.setEnabled(false);
     
 }
 
@@ -1055,6 +1091,7 @@ public void copyFiles(File src)
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
