@@ -88,6 +88,9 @@ public class CustomerRegistration extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        srchField = new javax.swing.JTextField();
         notify = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -278,8 +281,8 @@ public class CustomerRegistration extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 58, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -359,8 +362,66 @@ public class CustomerRegistration extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jLabel10.setText("Search");
+
+        srchField.setBorder(new LineBorder(Color.GRAY,1));
+        srchField.setMinimumSize(new java.awt.Dimension(12, 29));
+        srchField.setPreferredSize(new java.awt.Dimension(12, 30));
+        srchField.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                srchFieldFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                srchFieldFocusLost(evt);
+            }
+        });
+        srchField.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                srchFieldActionPerformed(evt);
+            }
+        });
+        srchField.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                srchFieldKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                srchFieldKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                srchFieldKeyTyped(evt);
+            }
+        });
+
         notify.setFont(new java.awt.Font("sansserif", 0, 15)); // NOI18N
         notify.setForeground(new java.awt.Color(255, 51, 51));
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(notify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                    .addComponent(srchField, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(86, 86, 86)
+                .addComponent(notify, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
+                .addContainerGap())
+            .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel6Layout.createSequentialGroup()
+                    .addGap(35, 35, 35)
+                    .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                        .addComponent(srchField, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addContainerGap(36, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -371,21 +432,20 @@ public class CustomerRegistration extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(notify, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap())))
+                        .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
-                .addComponent(notify)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(34, Short.MAX_VALUE))
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Customer Information"));
@@ -419,7 +479,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 781, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 793, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -437,17 +497,17 @@ public class CustomerRegistration extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(96, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -889,6 +949,31 @@ else
          
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void srchFieldFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_srchFieldFocusLost
+        // TODO add your handling code here:
+    }//GEN-LAST:event_srchFieldFocusLost
+
+    private void srchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_srchFieldActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_srchFieldActionPerformed
+
+    private void srchFieldKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_srchFieldKeyPressed
+        searchByRegNum();
+    }//GEN-LAST:event_srchFieldKeyPressed
+
+    private void srchFieldFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_srchFieldFocusGained
+        jTextField2.setBorder(new LineBorder(Color.GRAY,1));
+        notify.setText("");
+    }//GEN-LAST:event_srchFieldFocusGained
+
+    private void srchFieldKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_srchFieldKeyReleased
+       searchByRegNum();
+    }//GEN-LAST:event_srchFieldKeyReleased
+
+    private void srchFieldKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_srchFieldKeyTyped
+       searchByRegNum();
+    }//GEN-LAST:event_srchFieldKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -1086,6 +1171,69 @@ public void copyFiles(File src)
       }
      return errorFlag2;
  }
+ 
+ private void searchByRegNum()
+    {
+        
+        ResultSetMetaData rsmd = null;
+        Integer count;
+        String searchKey = srchField.getText().trim().toUpperCase();
+     String query = "SELECT `cust_id`, `cust_fname`, `cust_lname`, `cust_adrs`, `cust_city`, `cust_country`, `cust_pin`, `cust_ph_num`, `cust_dl_fl_name` FROM `customer` WHERE `cust_id`LIKE '"+searchKey+"%'OR `cust_fname`LIKE '"+searchKey+"%' OR `cust_lname` LIKE '"+searchKey+"%'";
+        DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
+           model.setRowCount(0);
+          
+           
+           
+           
+        try {
+            DbConSelect db = new DbConSelect();
+            
+  
+            ResultSet rs = db.selectDb(query);
+             rsmd = rs.getMetaData();
+             
+            count = rsmd.getColumnCount();
+           
+         
+            
+                while(rs.next())
+                  
+                {                             
+                              Vector v1 = new Vector();
+                              for(int i = 1; i<= count;i++ ) 
+                              {
+                              v1.add(rs.getString(1));
+                              v1.add(rs.getString(2));
+                              v1.add(rs.getString(3));
+                              v1.add(rs.getString(4));
+                              v1.add(rs.getString(5));
+                              v1.add(rs.getString(6));
+                              v1.add(rs.getString(7));
+                              v1.add(rs.getString(8));
+                              v1.add(rs.getString(9));
+                              }
+                              model.addRow(v1);
+                }
+                            
+                            //System.out.print(rowCount);
+                            if(model.getRowCount() == 0)
+                            {
+                                JOptionPane.showMessageDialog(null,"Customer not found.","Error",JOptionPane.WARNING_MESSAGE);
+                                srchField.setText(srchField.getText().substring(0, srchField.getText().length()-1));
+                            resetFunction();
+                            srchField.grabFocus();
+                            
+                            }
+     
+                
+            
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         jTable1.setAutoCreateRowSorter(true);
+                              
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -1094,6 +1242,7 @@ public void copyFiles(File src)
     private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1107,6 +1256,7 @@ public void copyFiles(File src)
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
@@ -1118,5 +1268,6 @@ public void copyFiles(File src)
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextPane jTextPane1;
     private javax.swing.JLabel notify;
+    private javax.swing.JTextField srchField;
     // End of variables declaration//GEN-END:variables
 }
