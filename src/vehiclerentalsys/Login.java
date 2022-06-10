@@ -5,7 +5,10 @@
 package vehiclerentalsys;
 
 
+import com.mysql.jdbc.Connection;
 import java.awt.event.KeyEvent;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -19,6 +22,7 @@ import javax.swing.JOptionPane;
 public class Login extends javax.swing.JFrame {
     String DbUName;
         String DbUPass;
+        
     
 
     /**
@@ -27,6 +31,10 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         
         initComponents();
+        super.setResizable(false);
+        
+        
+       
     }
 
     /**
@@ -52,6 +60,7 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Vehicle Rental System");
+        setSize(new java.awt.Dimension(250, 250));
 
         jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -249,48 +258,32 @@ public class Login extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "User name or Password cannot be empty!", "Warning", JOptionPane.WARNING_MESSAGE);
           
         }
-          Boolean flag = false;
-        ResultSet rs = null;
-       DbConSelect db = new DbConSelect();
-       String query;
-        query = "select * from vehicle_db.user_pass";
-        try {
-             rs = db.selectDb(query);
-             
-         while(rs.next()){
-            DbUName = rs.getString("uname");
-            DbUPass = rs.getString("password");
-     
-       
-       if(usrName.equals(DbUName.trim()) && password.equals(DbUPass.trim()))
-        {
-            
-            
-            RentalMainForm rm = new RentalMainForm(usrName);
+          else 
+          {
+          
+                //DbConSelect select = new DbConSelect();
+                    String query = "select * from vehicle_db.user_pass where uname = ? and password = ?";
+             try {
+                        java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vehicle_db","root","");
+                 PreparedStatement ps = con.prepareStatement(query);
+                  ps.setString(1,usrName);
+                  ps.setString(2, password);
+                ResultSet rs = ps.executeQuery();
+                 if(rs.next())
+                 {
+                     RentalMainForm rm = new RentalMainForm(usrName);
     
             rm.setVisible(true);
             this.hide();
-           flag = true;
-            break;
-        
-        }
-       else
-       {
-           flag = false;
-       }
-       
-         
-        
-  
-        }
-         
-        } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        if(!flag)
-        {
-            JOptionPane.showMessageDialog(this,"Incorrect Username or Password!", "Error",JOptionPane.ERROR_MESSAGE);
-        }
+                 }
+                 else
+                 {
+                      JOptionPane.showMessageDialog(this, "Invalid user credentials", "Warning", JOptionPane.WARNING_MESSAGE);
+                 }
+             } catch (SQLException ex) {
+                 Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+             }
+          }
         
         
     }//GEN-LAST:event_jButton1ActionPerformed
