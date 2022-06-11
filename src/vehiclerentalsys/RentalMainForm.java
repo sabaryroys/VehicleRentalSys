@@ -204,7 +204,7 @@ new Timer(timeDelay, time).start();
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 389, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 488, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -334,7 +334,7 @@ new Timer(timeDelay, time).start();
             
         
         
-     String query = "SELECT `v_id`, `v_reg_no`, `v_ins_end_dt` FROM `vehicle_details` WHERE `v_ins_end_dt` BETWEEN '"+current_date+"' AND '"+current_date_plus_30+"';";
+     String query = "SELECT `v_id`, `v_reg_no`, `v_ins_end_dt` FROM `vehicle_details` WHERE `v_ins_end_dt` BETWEEN '"+current_date+"' AND '"+current_date_plus_30+"' OR `v_ins_end_dt` < '"+current_date+"'";
         DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
            model.setRowCount(0);
            Connection con;
@@ -344,11 +344,11 @@ new Timer(timeDelay, time).start();
             ResultSet rs = stmnt.executeQuery();
              rsmd = rs.getMetaData();
             count = rsmd.getColumnCount();
-            Vector v1 = new Vector();
+           
                 while(rs.next())
                   
                 {                             
-                              
+                               Vector v1 = new Vector();
                               for(int i = 1; i<= count;i++ ) 
                               {
                               v1.add(rs.getString(1));
@@ -359,13 +359,13 @@ new Timer(timeDelay, time).start();
                               model.addRow(v1);
                 }
                 
-                if(model.getRowCount() == 0)
-                {
-                    v1.add("None");
-                    v1.add("None");
-                    v1.add("None");
-                    
-                }
+//                if(model.getRowCount() == 0)
+//                {
+//                    v1.add("None");
+//                    v1.add("None");
+//                    v1.add("None");
+//                    
+//                }
         } catch (SQLException ex) {
             Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
         }
