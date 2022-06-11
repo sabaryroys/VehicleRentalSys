@@ -31,6 +31,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class RentalMainForm extends javax.swing.JFrame {
    public static String currentUser;
+   //public static String file_path = "C:\\Users\\Sabari Roy\\Documents\\NetBeansProjects\\VehicleRentalSys\\licence\\copiesfromscanner\\";
   
 
     /**

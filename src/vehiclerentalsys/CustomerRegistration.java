@@ -30,10 +30,12 @@ import org.apache.commons.io.FileUtils;
  */
 public class CustomerRegistration extends javax.swing.JFrame {
    private static String usr = null;
+   private String defaultPath = new JFileChooser().getFileSystemView().getDefaultDirectory().toString();
+   
     String file_name ="";
-    String dest_file_path = "C:\\Users\\USER\\Documents\\NetBeansProjects\\VehicleRentalSys\\licence\\";
+    String dest_file_path = defaultPath+"\\NetBeansProjects\\VehicleRentalSys\\licence\\";
     Boolean error_flag = true;
-     JFileChooser jFileChooser1 = new JFileChooser("C:\\Users\\USER\\Documents\\NetBeansProjects\\VehicleRentalSys\\licence\\copiesfromscanner\\");
+     JFileChooser jFileChooser1 = new JFileChooser(defaultPath+"\\NetBeansProjects\\VehicleRentalSys\\licence\\copiesfromscanner");
     File f;
     File NewName;
 
@@ -48,6 +50,10 @@ public class CustomerRegistration extends javax.swing.JFrame {
         initComponents();
         autoUpdateCustID();
         resetFunction();
+        System.out.println(defaultPath);
+         System.out.println(dest_file_path);
+          //System.out.println(defaultPath);
+       
         
         
     }
@@ -927,16 +933,23 @@ else
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+        
+       String imageId = df.getValueAt(jTable1.getSelectedRow(), 8).toString();
+        System.out.println(imageId);
         String cust_id = jTextField1.getText().trim();
         String fName = jTextField2.getText();
         String lName = jTextField3.getText();
         DbConDelete del = new DbConDelete();
+        
         String query = "DELETE FROM `customer` WHERE `cust_id` = ? ";
             int rs = JOptionPane.showConfirmDialog(null, "Are you sure you want to delete ?", "Warning", JOptionPane.OK_CANCEL_OPTION);
                 if(rs == JOptionPane.OK_OPTION)
                 {
             try {
                 del.deleteDb(query, cust_id);
+                File deleteFile = new File(dest_file_path+imageId);
+                deleteFile.delete();
                
             } catch (SQLException ex) {
                 Logger.getLogger(CustomerRegistration.class.getName()).log(Level.SEVERE, null, ex);
