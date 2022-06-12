@@ -417,7 +417,7 @@ public class CustomerRegistration extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
+                .addGap(77, 77, 77)
                 .addComponent(notify, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -810,7 +810,8 @@ public class CustomerRegistration extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField6KeyPressed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
- jButton4.setEnabled(true);
+            jFileChooser1.setSelectedFile(null);
+        jButton4.setEnabled(true);
 jButton5.setEnabled(true);
         if(jTextField2.getText().equals("") || jTextField2.getText() == "")
        {
