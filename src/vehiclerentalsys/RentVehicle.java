@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import static vehiclerentalsys.Vehicle_registration.currentUser;
 
@@ -53,6 +54,10 @@ public class RentVehicle extends javax.swing.JFrame {
         jTextField6 = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jTextField7 = new javax.swing.JTextField();
+        jLabel8 = new javax.swing.JLabel();
+        jTextField4 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        jTextField5 = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -95,38 +100,45 @@ public class RentVehicle extends javax.swing.JFrame {
 
         jTextField7.setEnabled(false);
 
+        jLabel8.setText("Vehicle Type");
+
+        jTextField4.setEnabled(false);
+
+        jLabel9.setText("Vehicle Model");
+
+        jTextField5.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(30, 30, 30)))
+                            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                        .addComponent(jLabel9)
+                        .addGap(118, 118, 118)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
-                    .addComponent(jTextField2)
-                    .addComponent(jTextField3)
-                    .addComponent(jTextField6)
-                    .addComponent(jTextField7))
+                    .addComponent(jTextField5, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
+                        .addComponent(jTextField2)
+                        .addComponent(jTextField3)
+                        .addComponent(jTextField6)
+                        .addComponent(jTextField7)
+                        .addComponent(jTextField4)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -147,10 +159,18 @@ public class RentVehicle extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -257,6 +277,17 @@ public class RentVehicle extends javax.swing.JFrame {
                 srchVehicleActionPerformed(evt);
             }
         });
+        srchVehicle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                srchVehicleKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                srchVehicleKeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                srchVehicleKeyTyped(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -318,6 +349,8 @@ rmf.show();
        int rowNum = jTable1.getSelectedRow();
        jTextField2.setText(df.getValueAt(rowNum, 0).toString());
        jTextField7.setText(df.getValueAt(rowNum, 1).toString());
+       jTextField4.setText(df.getValueAt(rowNum, 2).toString());
+       jTextField5.setText(df.getValueAt(rowNum, 3).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
@@ -334,6 +367,18 @@ rmf.show();
     private void srchVehicleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_srchVehicleActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_srchVehicleActionPerformed
+
+    private void srchVehicleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_srchVehicleKeyPressed
+       vehicleSearch();
+    }//GEN-LAST:event_srchVehicleKeyPressed
+
+    private void srchVehicleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_srchVehicleKeyReleased
+        vehicleSearch();
+    }//GEN-LAST:event_srchVehicleKeyReleased
+
+    private void srchVehicleKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_srchVehicleKeyTyped
+       vehicleSearch();
+    }//GEN-LAST:event_srchVehicleKeyTyped
 
     /**
      * @param args the command line arguments
@@ -478,6 +523,73 @@ rmf.show();
          jTable2.setAutoCreateRowSorter(true);
                               
     }
+   private void vehicleSearch()
+    {
+        
+        ResultSetMetaData rsmd = null;
+        Integer count;
+        String searchKey = srchVehicle.getText().trim().toUpperCase();
+     String query = "SELECT `v_id`, `v_reg_no`, `v_type`, `v_model`, `v_avble`, `v_ins_st_dt`, `v_ins_end_dt`, `v_remark` FROM `vehicle_details` WHERE `v_avble` IN (SELECT `v_avble` from vehicle_details WHERE `v_id` LIKE '"+searchKey+"%' OR v_reg_no LIKE '"+searchKey+"') AND v_avble = 'Y'";
+        DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
+           model.setRowCount(0);
+          
+           
+           
+           
+        try {
+            DbConSelect db = new DbConSelect();
+            
+  
+            ResultSet rs = db.selectDb(query);
+             rsmd = rs.getMetaData();
+             
+            count = rsmd.getColumnCount();
+           
+         
+            
+                while(rs.next())
+                  
+                {                             
+                              Vector v1 = new Vector();
+                              for(int i = 1; i<= count;i++ ) 
+                              {
+                              v1.add(rs.getString(1));
+                              v1.add(rs.getString(2));
+                              v1.add(rs.getString(3));
+                              v1.add(rs.getString(4));
+                              v1.add(rs.getString(5));
+                              v1.add(rs.getString(6));
+                              v1.add(rs.getString(7));
+                              v1.add(rs.getString(8));
+                              }
+                              model.addRow(v1);
+                }
+                            
+                            //System.out.print(rowCount);
+                            if(model.getRowCount() == 0)
+                            {
+                                JOptionPane.showMessageDialog(null,"Vehicle not found.","Error",JOptionPane.WARNING_MESSAGE);
+                               if(srchVehicle.getText().equals(""))
+            {
+                srchVehicle.setText("");
+            }
+            else
+            {
+        srchVehicle.setText(srchVehicle.getText().substring(0,srchVehicle.getText().length()-1));
+            }
+                            srchVehicle.grabFocus();
+                            
+                            }
+     
+                
+            
+                
+        } catch (SQLException ex) {
+            Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         //jTable1.setAutoCreateRowSorter(true);
+                              
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -486,6 +598,8 @@ rmf.show();
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -496,6 +610,8 @@ rmf.show();
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField srchCust;
