@@ -32,7 +32,7 @@ public void updateDb(String query) throws SQLException
     
 
     {
-        ResultSet rs = null;
+       // ResultSet rs = null;
         try {
             Class.forName("com.mysql.jdbc.Driver");
             java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vehicle_db","root","");

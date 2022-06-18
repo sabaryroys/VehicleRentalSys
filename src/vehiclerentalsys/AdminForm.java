@@ -13,6 +13,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
@@ -28,6 +29,7 @@ public class AdminForm extends javax.swing.JFrame {
      */
     public AdminForm() {
         initComponents();
+        super.setExtendedState(JFrame.MAXIMIZED_BOTH);
         uname.setBorder(new LineBorder(Color.gray,1));
         pwd.setBorder(new LineBorder(Color.gray,1));
          jInternalFrame1.setVisible(false);

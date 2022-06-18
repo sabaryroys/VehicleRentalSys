@@ -21,6 +21,7 @@ import java.util.Date;
 import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -37,6 +38,7 @@ public class RentVehicle extends javax.swing.JFrame {
      */
     public RentVehicle() {
         initComponents();
+        super.setExtendedState(JFrame.MAXIMIZED_BOTH);
         int timeDelay = 500;
       ActionListener time = new ActionListener() {
 
@@ -44,6 +46,7 @@ public class RentVehicle extends javax.swing.JFrame {
     public void actionPerformed(ActionEvent evt) {
        
            numberOfDays();
+           
     }
 };
       new Timer(timeDelay, time).start();
@@ -83,7 +86,12 @@ public class RentVehicle extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jLabel12 = new javax.swing.JLabel();
-        jTextField8 = new javax.swing.JTextField();
+        numOfDays = new javax.swing.JTextField();
+        orderButton = new javax.swing.JButton();
+        jLabel13 = new javax.swing.JLabel();
+        jTextField9 = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        amount = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -164,14 +172,51 @@ public class RentVehicle extends javax.swing.JFrame {
 
         jLabel12.setText("Number of days");
 
-        jTextField8.setEnabled(false);
+        numOfDays.setEnabled(false);
+        numOfDays.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numOfDaysActionPerformed(evt);
+            }
+        });
+
+        orderButton.setText("Place Order");
+        orderButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                orderButtonActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("Rent amount / Day");
+
+        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField9ActionPerformed(evt);
+            }
+        });
+        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTextField9KeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField9KeyReleased(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField9KeyTyped(evt);
+            }
+        });
+
+        jLabel14.setText("Amount");
+
+        amount.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(41, 41, 41)
+                .addComponent(orderButton)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(35, 35, 35))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -209,7 +254,16 @@ public class RentVehicle extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                            .addComponent(numOfDays, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(amount, javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jTextField9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE))))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel14))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -249,12 +303,22 @@ public class RentVehicle extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel12)
+                    .addComponent(numOfDays, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(12, 12, 12)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel14)
+                    .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(orderButton))
                 .addGap(31, 31, 31))
         );
 
@@ -498,6 +562,57 @@ rmf.show();
     private void jDateChooser2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jDateChooser2MouseReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_jDateChooser2MouseReleased
+
+    private void orderButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_orderButtonActionPerformed
+        if(jTextField2.getText().trim().equals(""))
+        {
+         JOptionPane.showMessageDialog(this,"Please select a vehicle before proceeding.","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else if(jTextField3.getText().trim().equals(""))
+        {
+            JOptionPane.showMessageDialog(this,"Please select a customer before proceeding.","Warning",JOptionPane.WARNING_MESSAGE);
+            
+        }
+        else if(jDateChooser1.getDate().compareTo(jDateChooser2.getDate()) == 1)
+        {
+            JOptionPane.showMessageDialog(this,"Invalid rental end date","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else if(jTextField9.getText().equals("0") || jTextField9.getText().equals("") )
+        {
+            JOptionPane.showMessageDialog(this,"Invalid rental amount. Please enter an amount greater than 0","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+    }//GEN-LAST:event_orderButtonActionPerformed
+
+    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField9ActionPerformed
+
+    private void numOfDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numOfDaysActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numOfDaysActionPerformed
+
+    private void jTextField9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyPressed
+       if(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' || evt.getKeyCode() == 8)
+        {
+     
+       jTextField9.setEditable(true);
+       
+       amount.setText(Long.toString(calculateRentAmount()));
+        }
+        else
+        {
+            jTextField9.setEditable(false);
+            
+        }
+    }//GEN-LAST:event_jTextField9KeyPressed
+
+    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+        amount.setText(Long.toString(calculateRentAmount()));
+    }//GEN-LAST:event_jTextField9KeyTyped
+
+    private void jTextField9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyReleased
+        amount.setText(Long.toString(calculateRentAmount()));
+    }//GEN-LAST:event_jTextField9KeyReleased
  
     /**
      * @param args the command line arguments
@@ -793,6 +908,8 @@ rmf.show();
        jTextField7.setText("");
        srchVehicle.setText("");
        srchCust.setText("");
+       jTextField9.setText("0");
+        amount.setText(Long.toString(calculateRentAmount()));
    }
    private void numberOfDays()
    {
@@ -808,24 +925,41 @@ rmf.show();
          Integer diff = endDay-startDay;
         if(retVal > 0)
         {
-            jTextField8.setText(diff.toString());
+            numOfDays.setText(diff.toString());
         }
         else if(retVal == 0)
         {
-             jTextField8.setText("1");
+             numOfDays.setText("1");
         }
         else
         {
-            jTextField8.setText("0");
+            numOfDays.setText("0");
         }
-                
 
-         
-         
-   
-         
+   }
+   private long calculateRentAmount()
+   {
+       Long amount = new Long(0);
+       if(jTextField9.getText().equals(""))
+       {
+            
+           amount = new Long(0);
+       }
+       else if(numOfDays.getText().equals(""))
+       {
+           System.out.println("Error 2");
+           amount = new Long(0);
+       }
+       else
+       {
+      amount = Long.parseLong(jTextField9.getText()) * Long.parseLong(numOfDays.getText());
+      
+       }
+       
+       return amount;
    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField amount;
     private javax.swing.JButton jButton1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private com.toedter.calendar.JDateChooser jDateChooser2;
@@ -833,6 +967,8 @@ rmf.show();
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -855,7 +991,9 @@ rmf.show();
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField numOfDays;
+    private javax.swing.JButton orderButton;
     private javax.swing.JTextField srchCust;
     private javax.swing.JTextField srchVehicle;
     // End of variables declaration//GEN-END:variables
