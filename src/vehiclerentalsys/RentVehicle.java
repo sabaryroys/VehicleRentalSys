@@ -594,7 +594,7 @@ rmf.show();
     }//GEN-LAST:event_jTextField9ActionPerformed
 
     private void numOfDaysActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numOfDaysActionPerformed
-        // TODO add your handling code here:
+        // TODO add your handling code here:  
     }//GEN-LAST:event_numOfDaysActionPerformed
 
     private void jTextField9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyPressed
