@@ -12,6 +12,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -358,7 +359,7 @@ public class RentVehicle extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 938, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jScrollPane2)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,9 +396,7 @@ public class RentVehicle extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 938, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 1220, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -454,18 +453,21 @@ public class RentVehicle extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addGap(18, 18, 18)
-                        .addComponent(srchVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(srchCust, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 966, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(srchVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(srchCust, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1248, Short.MAX_VALUE))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -580,6 +582,10 @@ rmf.show();
         else if(jTextField9.getText().equals("0") || jTextField9.getText().equals("") )
         {
             JOptionPane.showMessageDialog(this,"Invalid rental amount. Please enter an amount greater than 0","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else if(validateEndDate())
+        {
+            JOptionPane.showMessageDialog(this,"Insurance of the selected vehicle "+jTextField2.getText()+" will end before rental end date. \nPlease choose a another vehicle or renew insurance.","Warning",JOptionPane.WARNING_MESSAGE);
         }
     }//GEN-LAST:event_orderButtonActionPerformed
 
@@ -919,8 +925,8 @@ rmf.show();
          Date dt2 = jDateChooser2.getDate();
          LocalDate d1 = dt.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
           LocalDate d2 = dt2.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-        Integer startDay =  d1.getDayOfMonth();
-        Integer endDay = d2.getDayOfMonth();
+        Integer startDay =  d1.getDayOfYear();
+        Integer endDay = d2.getDayOfYear();
          Integer retVal = dt2.compareTo(dt);
          Integer diff = endDay-startDay;
         if(retVal > 0)
@@ -957,6 +963,34 @@ rmf.show();
        }
        
        return amount;
+   }
+   private boolean validateEndDate() 
+   {
+       boolean flag = true;
+        try {
+            
+            DefaultTableModel df = (DefaultTableModel) jTable1.getModel();
+            int rowNum = jTable1.getSelectedRow();
+            String insEndDt = df.getValueAt(rowNum,6).toString();
+            SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
+            Date insEnd = sf.parse(insEndDt);
+            Date rentEndDate =sf.parse(sf.format(jDateChooser2.getDate()));
+            
+            
+            
+        if(insEnd.compareTo(rentEndDate) < 0 )
+        {
+                 flag = true;
+        }
+        else
+        {
+            flag = false;
+        }
+           
+        } catch (ParseException ex) {
+            Logger.getLogger(RentVehicle.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         return flag;
    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amount;
