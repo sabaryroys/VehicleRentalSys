@@ -1150,7 +1150,7 @@ public void copyFiles(File src)
         } catch (SQLException ex) {
             Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
         }
-         jTable1.setAutoCreateRowSorter(true);
+        // jTable1.setAutoCreateRowSorter(true);
                               
     }
  private boolean modifyErrorCheck()
