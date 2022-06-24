@@ -316,7 +316,7 @@ public class RentVehicle extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel14)
                     .addComponent(amount, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 354, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(orderButton))
@@ -363,7 +363,7 @@ public class RentVehicle extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 339, Short.MAX_VALUE)
         );
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Customers"));
@@ -401,8 +401,8 @@ public class RentVehicle extends javax.swing.JFrame {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1, Short.MAX_VALUE))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jLabel4.setFont(new java.awt.Font("sansserif", 1, 12)); // NOI18N
@@ -465,29 +465,31 @@ public class RentVehicle extends javax.swing.JFrame {
                                 .addComponent(jLabel5)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(srchCust, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1248, Short.MAX_VALUE))
+                        .addGap(0, 890, Short.MAX_VALUE))
+                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, 1230, Short.MAX_VALUE))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
+                .addGap(6, 6, 6)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(12, 12, 12)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(srchVehicle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
+                            .addComponent(srchVehicle))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(srchCust, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(64, 64, 64))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addComponent(srchCust)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 388, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -586,6 +588,24 @@ rmf.show();
         else if(validateEndDate())
         {
             JOptionPane.showMessageDialog(this,"Insurance of the selected vehicle "+jTextField2.getText()+" will end before rental end date. \nPlease choose a another vehicle or renew insurance.","Warning",JOptionPane.WARNING_MESSAGE);
+        }
+        else
+        {
+            SimpleDateFormat sf = new SimpleDateFormat("yyyy-MMM-dd");
+            int cnf = JOptionPane.showConfirmDialog(null,"Please verify the data \n ID :\t"+jTextField1.getText()+"\n Vehicle Reg# :\t"+jTextField7.getText()+"\n Vehicle type :\t"+jTextField4.getText()+"\n Customer Name :\t"+jTextField6.getText()+"\n Rental Start Day :\t"+sf.format(jDateChooser1.getDate())+"\n Rental End Day :\t"+sf.format(jDateChooser2.getDate())+"\n Number of days : "+numOfDays.getText()+"\n Amount : "+amount.getText(),"Confirm?",JOptionPane.YES_NO_OPTION);
+            if(cnf == JOptionPane.OK_OPTION)
+            {
+                try {
+                    String query =   "INSERT INTO `rental`(`o_id`, `v_id`, `cust_id`, `rent_st_dt`, `rent_end_dt`, `rent_actual_end_date`, `no_of_days`, `rent_amnt_pr_day`, `total_amount`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+jTextField3.getText()+",'"+sf.format(jDateChooser1.getDate())+"','"+sf.format(jDateChooser1.getDate())+"','NULL','"+numOfDays.getText()+"','"+jTextField9.getText()+"','"+amount.getText()+")";
+                    // System.out.println(query);
+                    
+                    Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vehicle_db","root",""); 
+                    PreparedStatement stmnt = con.prepareStatement(query);
+                    stmnt.executeUpdate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(RentVehicle.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
         }
     }//GEN-LAST:event_orderButtonActionPerformed
 
@@ -769,7 +789,7 @@ rmf.show();
         ResultSetMetaData rsmd = null;
         Integer count;
         String searchKey = srchVehicle.getText().trim().toUpperCase();
-     String query = "SELECT `v_id`, `v_reg_no`, `v_type`, `v_model`, `v_avble`, `v_ins_st_dt`, `v_ins_end_dt`, `v_remark` FROM (SELECT * FROM vehicle_details where `v_id` LIKE '"+searchKey+"%' OR `v_reg_no` LIKE '"+searchKey+"%') AS subq WHERE `v_avble` = 'Y';";
+     String query = "SELECT `v_id`, `v_reg_no`, `v_type`, `v_model`, `v_avble`, `v_ins_st_dt`, `v_ins_end_dt`, `v_remark` FROM (SELECT * FROM vehicle_details where `v_id` LIKE '"+searchKey+"%' OR `v_reg_no` LIKE '"+searchKey+"%' OR `v_type` LIKE '"+searchKey+"%') AS subq WHERE `v_avble` = 'Y';";
         DefaultTableModel model =  (DefaultTableModel) jTable1.getModel();
            model.setRowCount(0);
           
@@ -896,7 +916,7 @@ rmf.show();
     }
    private void resetFunction()
    {
-       //autoIdUpdate();
+       autoIdUpdate();
        ZoneId defaultZoneId = ZoneId.systemDefault();
         LocalDate d1 = LocalDate.now();
          LocalDate d2 = d1.plusDays(1);

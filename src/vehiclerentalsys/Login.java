@@ -39,11 +39,11 @@ public class Login extends javax.swing.JFrame {
         
         
         super.setResizable(false);
-        try {
-            super.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(defaultPath+"\\NetBeansProjects\\VehicleRentalSys\\images\\login.jpg")))));
-        } catch (IOException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            super.setContentPane(new JLabel(new ImageIcon(ImageIO.read(new File(defaultPath+"\\NetBeansProjects\\VehicleRentalSys\\images\\login.jpg")))));
+//        } catch (IOException ex) {
+//            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         initComponents();
         
        
@@ -82,7 +82,6 @@ public class Login extends javax.swing.JFrame {
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Login"));
         jPanel2.setForeground(new java.awt.Color(204, 255, 255));
-        jPanel2.setOpaque(false);
         jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jPanel2MouseClicked(evt);
@@ -125,8 +124,6 @@ public class Login extends javax.swing.JFrame {
                 pwdKeyPressed(evt);
             }
         });
-
-        jPanel3.setOpaque(false);
 
         jButton2.setText("Close");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
