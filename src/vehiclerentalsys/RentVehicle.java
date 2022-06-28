@@ -589,19 +589,26 @@ rmf.show();
         {
             JOptionPane.showMessageDialog(this,"Insurance of the selected vehicle "+jTextField2.getText()+" will end before rental end date. \nPlease choose a another vehicle or renew insurance.","Warning",JOptionPane.WARNING_MESSAGE);
         }
-        else
+        else // this inserts the new order into rental table and updates the rented vehicle status in vehicle details table a
         {
             SimpleDateFormat sf = new SimpleDateFormat("yyyy-MMM-dd");
+            SimpleDateFormat sf2 = new SimpleDateFormat("yyyy-MM-dd");
             int cnf = JOptionPane.showConfirmDialog(null,"Please verify the data \n ID :\t"+jTextField1.getText()+"\n Vehicle Reg# :\t"+jTextField7.getText()+"\n Vehicle type :\t"+jTextField4.getText()+"\n Customer Name :\t"+jTextField6.getText()+"\n Rental Start Day :\t"+sf.format(jDateChooser1.getDate())+"\n Rental End Day :\t"+sf.format(jDateChooser2.getDate())+"\n Number of days : "+numOfDays.getText()+"\n Amount : "+amount.getText(),"Confirm?",JOptionPane.YES_NO_OPTION);
             if(cnf == JOptionPane.OK_OPTION)
             {
                 try {
-                    String query =   "INSERT INTO `rental`(`o_id`, `v_id`, `cust_id`, `rent_st_dt`, `rent_end_dt`, `rent_actual_end_date`, `no_of_days`, `rent_amnt_pr_day`, `total_amount`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+jTextField3.getText()+",'"+sf.format(jDateChooser1.getDate())+"','"+sf.format(jDateChooser1.getDate())+"','NULL','"+numOfDays.getText()+"','"+jTextField9.getText()+"','"+amount.getText()+")";
-                    // System.out.println(query);
+                    String query =   "INSERT INTO `rental`(`o_id`, `v_id`, `cust_id`, `rent_st_dt`, `rent_end_dt`,`no_of_days`, `rent_amnt_pr_day`, `total_amount`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+jTextField3.getText()+"','"+sf2.format(jDateChooser1.getDate())+"','"+sf2.format(jDateChooser1.getDate())+"','"+numOfDays.getText()+"','"+jTextField9.getText()+"','"+amount.getText()+"')";
+                     //System.out.println(query);
+                    String vehicleStatusUpdateQuery = "UPDATE `vehicle_details` SET `v_avble`='N',`v_remark`='Rented' WHERE `v_id` = ? ";
                     
                     Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/vehicle_db","root",""); 
                     PreparedStatement stmnt = con.prepareStatement(query);
                     stmnt.executeUpdate();
+                    JOptionPane.showMessageDialog(null,"Order palced successfully", "Sucess",JOptionPane.INFORMATION_MESSAGE);
+                    stmnt = con.prepareStatement(vehicleStatusUpdateQuery);
+                    stmnt.setString(1,jTextField2.getText());
+                    stmnt.executeUpdate();
+                    resetFunction();
                 } catch (SQLException ex) {
                     Logger.getLogger(RentVehicle.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -917,6 +924,7 @@ rmf.show();
    private void resetFunction()
    {
        autoIdUpdate();
+       VehicleTableUpdate();
        ZoneId defaultZoneId = ZoneId.systemDefault();
         LocalDate d1 = LocalDate.now();
          LocalDate d2 = d1.plusDays(1);
@@ -1012,6 +1020,7 @@ rmf.show();
         }
          return flag;
    }
+   
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amount;
     private javax.swing.JButton jButton1;
