@@ -1278,7 +1278,9 @@ public void copyFiles(File src)
          jTable1.setAutoCreateRowSorter(true);
                               
     }
- private void verifyCustomerExist(String ID)
+ 
+ 
+ private void verifyCustomerExist(String ID) // function to verify whether the customer have any orders open in the system. 
  {
        try {
            DbConSelect db = new DbConSelect();
