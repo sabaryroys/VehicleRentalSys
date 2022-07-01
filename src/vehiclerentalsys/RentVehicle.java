@@ -20,6 +20,7 @@ import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.Vector;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -787,7 +788,7 @@ rmf.show();
         } catch (SQLException ex) {
             Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
         }
-         jTable2.setAutoCreateRowSorter(true);
+       //  jTable2.setAutoCreateRowSorter(true);
                               
     }
    private void vehicleSearch()
@@ -947,7 +948,7 @@ rmf.show();
    }
    private void numberOfDays()
    {
-       //SimpleDateFormat df = SimpleDateFormat("yyyy-MM-dd");
+       SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
        
          Date dt = jDateChooser1.getDate();
          Date dt2 = jDateChooser2.getDate();
@@ -956,10 +957,19 @@ rmf.show();
         Integer startDay =  d1.getDayOfYear();
         Integer endDay = d2.getDayOfYear();
          Integer retVal = dt2.compareTo(dt);
-         Integer diff = endDay-startDay;
+         Long diff = new Long(0);
+         
+        
+            Date newDtStart = jDateChooser1.getDate();
+             Date newDtEnd = jDateChooser2.getDate();
+              diff = newDtEnd.getTime() - newDtStart.getTime();
+      
+       
         if(retVal > 0)
         {
-            numOfDays.setText(diff.toString());
+             Long convert = TimeUnit.DAYS.convert(diff, TimeUnit.MILLISECONDS);
+            numOfDays.setText(convert.toString());
+          
         }
         else if(retVal == 0)
         {

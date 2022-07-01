@@ -578,7 +578,7 @@ rmf.show();
         } catch (SQLException ex) {
             Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
         }
-         jTable1.setAutoCreateRowSorter(true);
+         //jTable1.setAutoCreateRowSorter(true);
                               
     }
     
@@ -935,7 +935,7 @@ private void modifyTable(){
         } catch (SQLException ex) {
             Logger.getLogger(Vehicle_registration.class.getName()).log(Level.SEVERE, null, ex);
         }
-         jTable1.setAutoCreateRowSorter(true);
+        // jTable1.setAutoCreateRowSorter(true);
                               
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
