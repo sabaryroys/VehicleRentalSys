@@ -598,7 +598,7 @@ rmf.show();
             if(cnf == JOptionPane.OK_OPTION)
             {
                 try {
-                    String query =   "INSERT INTO `rental`(`o_id`, `v_id`, `cust_id`, `rent_st_dt`, `rent_end_dt`,`no_of_days`, `rent_amnt_pr_day`, `total_amount`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+jTextField3.getText()+"','"+sf2.format(jDateChooser1.getDate())+"','"+sf2.format(jDateChooser1.getDate())+"','"+numOfDays.getText()+"','"+jTextField9.getText()+"','"+amount.getText()+"')";
+                    String query =   "INSERT INTO `rental`(`o_id`, `v_id`, `cust_id`, `rent_st_dt`, `rent_end_dt`,`no_of_days`, `rent_amnt_pr_day`, `total_amount`) VALUES ('"+jTextField1.getText()+"','"+jTextField2.getText()+"','"+jTextField3.getText()+"','"+sf2.format(jDateChooser1.getDate())+"','"+sf2.format(jDateChooser2.getDate())+"','"+numOfDays.getText()+"','"+jTextField9.getText()+"','"+amount.getText()+"')";
                      //System.out.println(query);
                     String vehicleStatusUpdateQuery = "UPDATE `vehicle_details` SET `v_avble`='N',`v_remark`='Rented' WHERE `v_id` = ? ";
                     
@@ -626,12 +626,12 @@ rmf.show();
     }//GEN-LAST:event_numOfDaysActionPerformed
 
     private void jTextField9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyPressed
-       if(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' || evt.getKeyCode() == 8)
+       if(evt.getKeyChar() >= '0' && evt.getKeyChar() <= '9' || evt.getKeyCode() == 8 || evt.getKeyCode() == 46)
         {
      
        jTextField9.setEditable(true);
        
-       amount.setText(Long.toString(calculateRentAmount()));
+       amount.setText(Float.toString(calculateRentAmount()));
         }
         else
         {
@@ -641,11 +641,11 @@ rmf.show();
     }//GEN-LAST:event_jTextField9KeyPressed
 
     private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
-        amount.setText(Long.toString(calculateRentAmount()));
+        amount.setText(Float.toString(calculateRentAmount()));
     }//GEN-LAST:event_jTextField9KeyTyped
 
     private void jTextField9KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyReleased
-        amount.setText(Long.toString(calculateRentAmount()));
+        amount.setText(Float.toString(calculateRentAmount()));
     }//GEN-LAST:event_jTextField9KeyReleased
  
     /**
@@ -944,7 +944,7 @@ rmf.show();
        srchVehicle.setText("");
        srchCust.setText("");
        jTextField9.setText("0");
-        amount.setText(Long.toString(calculateRentAmount()));
+        amount.setText(Float.toString(calculateRentAmount()));
    }
    private void numberOfDays()
    {
@@ -981,22 +981,22 @@ rmf.show();
         }
 
    }
-   private long calculateRentAmount()
+   private Float calculateRentAmount()
    {
-       Long amount = new Long(0);
+       Float amount = new Float(0);
        if(jTextField9.getText().equals(""))
        {
             
-           amount = new Long(0);
+           amount = new Float(0);
        }
        else if(numOfDays.getText().equals(""))
        {
            System.out.println("Error 2");
-           amount = new Long(0);
+           amount = new Float(0);
        }
        else
        {
-      amount = Long.parseLong(jTextField9.getText()) * Long.parseLong(numOfDays.getText());
+      amount = Float.parseFloat(jTextField9.getText()) * Long.parseLong(numOfDays.getText());
       
        }
        
